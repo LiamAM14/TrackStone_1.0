@@ -1,4 +1,7 @@
 package es.unex.trackstone10.adapter
 
-class cardHolder     {
+import android.view.View
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+
+class cardHolder(view: View) : ViewHolder(view) {
 }
