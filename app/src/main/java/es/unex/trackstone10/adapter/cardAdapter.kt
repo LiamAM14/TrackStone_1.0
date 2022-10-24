@@ -14,6 +14,8 @@ class cardAdapter(val cardsList: List<Cards>) : RecyclerView.Adapter<cardHolder>
     }
 
     override fun onBindViewHolder(holder: cardHolder, position: Int) {
+        val item = cardsList[position]
+        holder.render(item)
     }
 
     override fun getItemCount(): Int = cardsList.size
