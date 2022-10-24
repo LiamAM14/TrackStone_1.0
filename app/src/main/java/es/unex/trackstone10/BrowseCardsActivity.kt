@@ -21,4 +21,6 @@ class BrowseCardsActivity : AppCompatActivity() {
         recyclerview.layoutManager = LinearLayoutManager(this)
         recyclerview.adapter = cardAdapter(CardProvider.cardsList)
     }
+
+
 }
