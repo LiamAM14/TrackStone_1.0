@@ -7,4 +7,6 @@
     <string name="confirmPassword">Confirm Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
+    <string name="addFavorite">Add to favorites</string>
+    <string name="deleteFavorite">Delete from favorites</string>
 </resources>
