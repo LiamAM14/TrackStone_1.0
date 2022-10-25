@@ -38,7 +38,7 @@
     <Button
         android:id="@+id/addHeroe_skinFavorite"
         android:layout_width="187dp"
-        android:layout_height="42dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:background="@color/black"
         android:text="Add/Remove to favorites"
