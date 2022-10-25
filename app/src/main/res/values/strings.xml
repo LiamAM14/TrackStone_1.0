@@ -9,4 +9,9 @@
     <string name="register">Register</string>
     <string name="addFavorite">Add to favorites</string>
     <string name="deleteFavorite">Delete from favorites</string>
+    <string name="cardName">Card name</string>
+    <string name="craftCost">Craft cost</string>
+    <string name="deleteUser">Delete user</string>
+    <string name="changeDataProfileButton">Change</string>
+    <string name="card_description">Image of a card</string>
 </resources>

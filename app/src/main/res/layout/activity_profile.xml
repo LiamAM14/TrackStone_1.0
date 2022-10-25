@@ -4,104 +4,140 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#202732"
     tools:context=".ProfileActivity">
 
     <ImageView
         android:id="@+id/profileDetail"
-        android:layout_width="215dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:contentDescription="@string/logo_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/profileName"
+        app:srcCompat="@drawable/hearthstone_logo" />
 
     <TextView
         android:id="@+id/profileName"
-        android:layout_width="179dp"
-        android:layout_height="37dp"
-        app:layout_constraintBottom_toTopOf="@+id/profileDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:minHeight="48dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/profileDetail1"
+    <EditText
+        android:id="@+id/profileEmailChange"
         android:layout_width="219dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="64dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/email"
+        android:importantForAutofill="no"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileDetail" />
 
-    <TextView
-        android:id="@+id/profileDetail2"
+    <EditText
+        android:id="@+id/profileNameChange"
         android:layout_width="219dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/username"
+        android:inputType="text"
+        android:minHeight="48dp"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDetail1" />
+        app:layout_constraintTop_toBottomOf="@+id/profileEmailChange"
+        android:importantForAutofill="no" />
 
-    <TextView
-        android:id="@+id/profileDetail3"
+    <EditText
+        android:id="@+id/profilePasswordChange"
         android:layout_width="219dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        android:layout_height="48dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:backgroundTint="@color/white"
+        android:ems="10"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textColorHint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDetail2" />
+        app:layout_constraintTop_toBottomOf="@+id/profileNameChange"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/Change1"
-        android:layout_width="103dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="20dp"
-        android:background="@color/black"
-        android:text="Change"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/Change2"
+        android:layout_width="105dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/changeDataProfileButton"
+        android:textColor="#202732"
+        app:layout_constraintBottom_toBottomOf="@+id/profileEmailChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileDetail1"
-        app:layout_constraintTop_toTopOf="@+id/profileDetail1"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toEndOf="@+id/profileEmailChange"
+        app:layout_constraintTop_toTopOf="@+id/profileEmailChange"
+        tools:ignore="DuplicateSpeakableTextCheck" />
 
     <Button
         android:id="@+id/Change2"
-        android:layout_width="103dp"
-        android:layout_height="37dp"
-        android:background="@color/black"
-        android:text="Change"
-        android:textColor="@color/white"
+        android:layout_width="105dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/changeDataProfileButton"
+        android:textColor="#202732"
+        app:layout_constraintBottom_toBottomOf="@+id/profileNameChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileDetail2"
-        app:layout_constraintTop_toTopOf="@+id/profileDetail2" />
+        app:layout_constraintStart_toEndOf="@+id/profileNameChange"
+        app:layout_constraintTop_toTopOf="@+id/profileNameChange" />
 
     <Button
         android:id="@+id/Change3"
-        android:layout_width="103dp"
-        android:layout_height="37dp"
-        android:background="@color/black"
-        android:text="Change"
-        android:textColor="@color/white"
+        android:layout_width="105dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/changeDataProfileButton"
+        android:textColor="#202732"
+        app:layout_constraintBottom_toBottomOf="@+id/profilePasswordChange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/profileDetail3"
-        app:layout_constraintTop_toTopOf="@+id/profileDetail3" />
+        app:layout_constraintStart_toEndOf="@+id/profilePasswordChange"
+        app:layout_constraintTop_toTopOf="@+id/profilePasswordChange" />
 
     <Button
-        android:id="@+id/deleteUser"
-        android:layout_width="141dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="43dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/black"
-        android:text="Delete user"
-        android:textColor="@color/white"
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="64dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/deleteUser"
+        android:textColor="#202732"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profileDetail3" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -80,7 +80,6 @@
         android:text="@string/register"
         android:textColor="#202732"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_delete_favoriteButton" />
 
