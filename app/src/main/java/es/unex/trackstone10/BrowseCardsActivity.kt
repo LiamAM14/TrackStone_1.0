@@ -30,6 +30,7 @@ class BrowseCardsActivity : AppCompatActivity() {
 
     fun onItemSelected( cards: Cards){
         intent = Intent(this, CardInfoActivity::class.java)
+        intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }
 

@@ -1,5 +1,7 @@
 package es.unex.trackstone10
 
+import java.io.Serializable
+
 data class Cards (
     val Id : Int,
     val slug : String,
@@ -16,4 +18,4 @@ data class Cards (
     val text : String,
     val cropImage : String,
     val keywords : Array<Int>
-    )
+    ): Serializable
