@@ -8,32 +8,26 @@
 
     <ImageView
         android:id="@+id/heroe_skinDetails"
-        android:layout_width="215dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="68dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
+        android:layout_marginTop="136dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/heroe_skinDetailsName"
-        android:layout_width="179dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/heroe_skinDetails"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/heroe_skinDetail1"
-        android:layout_width="214dp"
-        android:layout_height="146dp"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heroe_skinDetails" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.395" />
 
     <Button
         android:id="@+id/addHeroe_skinFavorite"
@@ -46,7 +40,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/heroe_skinDetail1"
+        app:layout_constraintTop_toBottomOf="@+id/heroe_skinDetails"
         app:layout_constraintVertical_bias="0.527" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

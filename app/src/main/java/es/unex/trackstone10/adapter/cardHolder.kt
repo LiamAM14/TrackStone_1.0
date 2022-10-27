@@ -1,16 +1,9 @@
 package es.unex.trackstone10.adapter
 
-import android.content.Intent
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.Card_backInfoActivity
 import es.unex.trackstone10.Cards
-import es.unex.trackstone10.R
 import es.unex.trackstone10.databinding.ItemCardBinding
 
 class cardHolder(view: View) : ViewHolder(view) {

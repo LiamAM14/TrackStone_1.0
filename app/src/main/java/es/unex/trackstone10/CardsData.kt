@@ -17,5 +17,5 @@ data class Cards (
     val ClassId : Int,
     val text : String,
     val cropImage : String,
-    val keywords : Array<Int>
+    val keywords : Array<Int>?
     ): Serializable

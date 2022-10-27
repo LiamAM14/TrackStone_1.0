@@ -4,11 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.adapter.cardAdapter
-import es.unex.trackstone10.adapter.cardHolder
 import es.unex.trackstone10.databinding.ActivityBrowseCardsBinding
-import es.unex.trackstone10.databinding.ActivityMainBinding
+
 
 class BrowseCardsActivity : AppCompatActivity() {
 
@@ -28,8 +26,12 @@ class BrowseCardsActivity : AppCompatActivity() {
             cardAdapter(CardProvider.cardsList) { onItemSelected(it) }
     }
 
-    fun onItemSelected( cards: Cards){
-        intent = Intent(this, CardInfoActivity::class.java)
+    fun onItemSelected(cards: Cards) {
+        if (cards.TypeId == 3 && cards.manaCost == 0) {
+            intent = Intent(this, Heroe_skinInfoActivity::class.java)
+        } else {
+            intent = Intent(this, CardInfoActivity::class.java)
+        }
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }

@@ -35,6 +35,22 @@ class CardProvider {
                 "Your other characters are <b>Immune</b> while attacking.",
                 "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/7e3d10913c2c95ac813aa30f68d18317503d306f941ef3cdcd76a7ee0cbdb094.png",
                 arrayOf(17)
+            ), Cards(
+                67521,
+                "67521-l-bu-garrosh",
+                null,
+                "Lü Bu Garrosh",
+                3,
+                0,
+                0,
+                30,
+                2,
+                17,
+                "https://d15f34w2p8l1cc.cloudfront.net/hearthstone/3ecc325d969f83c447d0349a3a869c2d8ad265bbe2cad99c13dce4bc733179ac.png",
+                10,
+                "",
+                "",
+                null
             )
         )
     }
