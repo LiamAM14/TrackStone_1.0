@@ -13,7 +13,8 @@ class deckAdapter(private val deckList: List<Deck>): RecyclerView.Adapter<deckHo
     }
 
     override fun onBindViewHolder(holder: deckHolder, position: Int) {
-
+        val item = deckList[position]
+        holder.render(item)
     }
 
     override fun getItemCount(): Int = deckList.size
