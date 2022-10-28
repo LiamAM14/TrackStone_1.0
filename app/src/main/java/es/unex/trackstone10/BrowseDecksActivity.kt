@@ -1,9 +1,8 @@
-package es.unex.trackcstone10
+package es.unex.trackstone10
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.DeckProvider
 import es.unex.trackstone10.adapter.deckAdapter
 import es.unex.trackstone10.databinding.ActivityBrowseDecksBinding
 
