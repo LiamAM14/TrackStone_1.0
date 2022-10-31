@@ -4,10 +4,11 @@ import android.content.DialogInterface.OnClickListener
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import es.unex.trackstone10.CardResponse
 import es.unex.trackstone10.Cards
 import es.unex.trackstone10.R
 
-class cardAdapter(val cardsList: List<Cards>, private val onClickListener: (Cards) -> Unit) : RecyclerView.Adapter<cardHolder>() {
+class cardAdapter(val cardsList: List<CardResponse>, private val onClickListener: (Cards) -> Unit) : RecyclerView.Adapter<cardHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cardHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
