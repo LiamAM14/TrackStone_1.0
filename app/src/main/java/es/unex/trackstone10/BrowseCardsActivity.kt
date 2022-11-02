@@ -18,9 +18,11 @@ import retrofit2.create
 
 class BrowseCardsActivity : AppCompatActivity() {
 
-    private lateinit var adapter: cardAdapter
+
     private lateinit var binding: ActivityBrowseCardsBinding
+    private lateinit var adapter: cardAdapter
     private val CardList = mutableListOf<CardResponse>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,7 +35,6 @@ class BrowseCardsActivity : AppCompatActivity() {
         adapter = cardAdapter(CardList) { onItemSelected(it) }
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewCards.adapter = adapter
-
     }
 
     fun onItemSelected(cards: CardResponse) {
@@ -57,11 +58,12 @@ class BrowseCardsActivity : AppCompatActivity() {
             val card: CardResponse? = call.body()
             runOnUiThread{
                 if (call.isSuccessful){
-                    if (card != null) {
+                    if(card != null) {
                         CardList.clear()
                         CardList.add(card)
                         adapter.notifyDataSetChanged()
                     }
+                    //Show recyclerview
                 }else{
                     showError()
                 }
