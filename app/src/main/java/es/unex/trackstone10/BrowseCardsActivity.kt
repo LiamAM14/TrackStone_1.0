@@ -18,7 +18,7 @@ import retrofit2.create
 
 class BrowseCardsActivity : AppCompatActivity() {
 
-
+    private lateinit var adapter: cardAdapter
     private lateinit var binding: ActivityBrowseCardsBinding
     private val CardList = mutableListOf<CardResponse>()
 
@@ -30,13 +30,14 @@ class BrowseCardsActivity : AppCompatActivity() {
     }
 
     private fun initRecyclerView() {
+        adapter = cardAdapter(CardList) { onItemSelected(it) }
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewCards.adapter =
-            cardAdapter(CardList) { onItemSelected(it) }
+        binding.recyclerViewCards.adapter = adapter
+
     }
 
-    fun onItemSelected(cards: Cards) {
-        if (cards.TypeId == 3 && cards.manaCost == 0) {
+    fun onItemSelected(cards: CardResponse) {
+        if (cards.cardTypeId == 3 && cards.cardSetId == 17) {
             intent = Intent(this, Heroe_skinInfoActivity::class.java)
         } else {
             intent = Intent(this, CardInfoActivity::class.java)
@@ -56,7 +57,11 @@ class BrowseCardsActivity : AppCompatActivity() {
             val card: CardResponse? = call.body()
             runOnUiThread{
                 if (call.isSuccessful){
-                    //Show recyclerview
+                    if (card != null) {
+                        CardList.clear()
+                        CardList.add(card)
+                        adapter.notifyDataSetChanged()
+                    }
                 }else{
                     showError()
                 }
