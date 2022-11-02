@@ -1,5 +1,7 @@
 package es.unex.trackstone10
 
+import java.io.Serializable
+
 data class CardResponse (
     var id: Int? = null,
     var collectible: Int? = null,
@@ -19,4 +21,4 @@ data class CardResponse (
     var flavorText: String? = null,
     var cropImage: String? = null,
     var keywordIds: List<Int>? = null,
-)
+): Serializable

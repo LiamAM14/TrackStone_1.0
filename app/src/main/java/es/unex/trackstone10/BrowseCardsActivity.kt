@@ -35,8 +35,8 @@ class BrowseCardsActivity : AppCompatActivity() {
             cardAdapter(CardList) { onItemSelected(it) }
     }
 
-    fun onItemSelected(cards: Cards) {
-        if (cards.TypeId == 3 && cards.manaCost == 0) {
+    fun onItemSelected(cards: CardResponse) {
+        if (cards.cardTypeId == 3 && cards.cardSetId == 17) {
             intent = Intent(this, Heroe_skinInfoActivity::class.java)
         } else {
             intent = Intent(this, CardInfoActivity::class.java)
