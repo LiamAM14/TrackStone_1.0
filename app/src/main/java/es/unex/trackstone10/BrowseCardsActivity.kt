@@ -5,15 +5,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.unex.trackstone10.API.APIService
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.ActivityBrowseCardsBinding
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 
 class BrowseCardsActivity : AppCompatActivity() {
@@ -63,7 +62,6 @@ class BrowseCardsActivity : AppCompatActivity() {
                         CardList.add(card)
                         adapter.notifyDataSetChanged()
                     }
-                    //Show recyclerview
                 }else{
                     showError()
                 }

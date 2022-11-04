@@ -18,5 +18,5 @@
         android:id="@+id/recyclerViewCards"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_constraintTop_toBottomOf="@+id/svCard" />
+        app:layout_constraintTop_toBottomOf="@+id/svCard" />
 </FrameLayout>
