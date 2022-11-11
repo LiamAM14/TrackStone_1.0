@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BrowseCardsActivity"
-    android:background="#202732">
+    android:orientation="vertical"
+    android:background="@color/purpleCute">
 
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/svCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <androidx.appcompat.widget.SearchView
-        android:id="@+id/svCard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewCards"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewCards"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-</FrameLayout>
+</LinearLayout>
