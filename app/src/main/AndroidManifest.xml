@@ -15,6 +15,14 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="33">
         <activity
+            android:name=".ButtonNavigationActivity"
+            android:exported="false"
+            android:label="@string/title_activity_button_navigation">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".BrowseFavoriteCardsActivity"
             android:exported="false">
             <meta-data
