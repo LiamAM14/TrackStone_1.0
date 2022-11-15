@@ -4,14 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/purpleCute"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.decks.DecksFragment">
 
     <TextView
-        android:id="@+id/home_fragment"
+        android:id="@+id/deck_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Home Fragment"
+        android:text="Decks Fragment"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
