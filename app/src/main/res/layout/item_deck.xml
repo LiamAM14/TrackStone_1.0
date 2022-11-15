@@ -5,7 +5,7 @@
     android:id="@+id/deckConstraintlayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#202732">
+    android:background="@color/purpleCute">
 
 
     <ImageView
@@ -39,7 +39,7 @@
         android:background="@drawable/rounded_button"
         android:minHeight="48dp"
         android:text="@string/editDeck"
-        android:textColor="#202732"
+        android:textColor="@color/purpleCute"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewClassDeck"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageViewClassDeck"

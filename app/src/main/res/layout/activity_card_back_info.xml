@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#202732"
+    android:background="@color/purpleCute"
     tools:context=".Card_backInfoActivity">
 
     <ImageView
@@ -50,7 +50,6 @@
         android:textColor="@color/white"
         android:gravity="start"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_backDetails" />
 
@@ -63,7 +62,7 @@
         android:layout_marginBottom="64dp"
         android:background="@drawable/rounded_button"
         android:text="@string/addFavorite"
-        android:textColor="#202732"
+        android:textColor="@color/purpleCute"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

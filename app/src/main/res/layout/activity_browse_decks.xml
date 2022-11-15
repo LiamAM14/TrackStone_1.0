@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".BrowseDecksActivity"
-    android:background="#202732">
+    android:background="@color/purpleCute">
 
     <Button
         android:id="@+id/buttonCreateDeck"
@@ -19,19 +19,20 @@
         android:background="@drawable/rounded_button"
         android:minHeight="48dp"
         android:text="@string/createDeck"
-        android:textColor="#202732" />
+        android:textColor="@color/purpleCute" />
 
-    <FrameLayout
+    <LinearLayout
         android:id="@+id/frameLayoutRecyclerViewDecks"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#202732">
+        android:background="@color/purpleCute"
+        android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewDecks"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-    </FrameLayout>
+    </LinearLayout>
 
 </RelativeLayout>
