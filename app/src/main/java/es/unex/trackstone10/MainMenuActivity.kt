@@ -50,11 +50,6 @@ class MainMenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        bProfile.setOnClickListener() { view ->
-            intent = Intent(this, ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
         bCardback.setOnClickListener() { view ->
             intent = Intent(this, Card_backInfoActivity::class.java)
             startActivity(intent)
