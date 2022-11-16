@@ -2,7 +2,7 @@
     <string name="app_name">TrackStone 1.0</string>
     <string name="logo_description">Logotype application TrackStone</string>
     <string name="class_description">image of a class</string>
-    <string name="heroe_description">image of a hero</string>
+    <string name="hero_description">image of a hero</string>
     <string name="cardBack_description">image of a cardback</string>
     <string name="testInfo">Test Information</string>
     <string name="username">Username</string>

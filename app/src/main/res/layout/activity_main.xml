@@ -202,7 +202,7 @@
                 <ImageView
                     android:layout_width="64dp"
                     android:layout_height="63dp"
-                    android:src="@drawable/profile" />
+                    android:src="@drawable/ic_baseline_account_circle_24" />
 
                 <Button
                     android:id="@+id/profileButton"

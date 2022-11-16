@@ -9,7 +9,7 @@ import es.unex.trackstone10.ui.favorites.FavoritesFragment
 import es.unex.trackstone10.ui.home.HomeFragment
 import es.unex.trackstone10.ui.profile.ProfileFragment
 
-class ButtonNavigationMenu : AppCompatActivity() {
+class ButtonNavigationMenuActivity : AppCompatActivity() {
 
     private val homeFragment = HomeFragment()
     private val favoritesFragment = FavoritesFragment()
