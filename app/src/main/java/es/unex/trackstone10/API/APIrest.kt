@@ -56,12 +56,12 @@ object APIrest {
             val client = buildClientInterceptor()
 
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cards?locale=en_US")
+                .baseUrl("https://us.api.blizzard.com")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                     .build()
 
-            val call = retrofit.create(APIService::class.java).getCardsByName("&textFilter=$query")
+            val call = retrofit.create(APIService::class.java).getCardsByName("en_US",query)
 
             cards = call.body()
 

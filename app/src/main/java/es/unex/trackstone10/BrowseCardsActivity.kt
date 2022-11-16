@@ -47,12 +47,6 @@ class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener 
         startActivity(intent)
     }
 
-    private fun getRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://us.api.blizzard.com/hearthstone/cards?locale=en_US")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-    }
-
     private fun searchByName(query: String) {
         runOnUiThread {
             if (APIrest.getCards(query) == 2){
