@@ -15,7 +15,10 @@ interface APIService {
 
 
     @GET("/hearthstone/cards")
-    suspend fun getCardsByName(@Query ("locale") locale: String, @Query("textFilter") name: String): Response<CardResponseList>
+    suspend fun getCardsByName(
+        @Query("locale") locale: String,
+        @Query("textFilter") name: String
+    ): CardResponseList
 
 
 }

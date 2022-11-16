@@ -50,8 +50,7 @@ object APIrest {
             .build()
     }
 
-    fun getCards(query: String): Int{
-        var answer = 1
+    fun getCards(query: String){
         CoroutineScope(Dispatchers.IO).launch{
             val client = buildClientInterceptor()
 
@@ -64,15 +63,6 @@ object APIrest {
             val call = retrofit.create(APIService::class.java).getCardsByName("en_US",query)
 
             cards = call.body()
-
-            if(call.isSuccessful){
-                if(cards != null){
-                    answer = 2
-                }
-            } else{
-                answer = 1
-            }
         }
-        return answer
     }
 }

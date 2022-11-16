@@ -22,7 +22,7 @@ class ButtonNavigationMenuActivity : AppCompatActivity() {
         replaceFragment(homeFragment)
 
         val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        bottomNavigation.setOnNavigationItemSelectedListener {
+        bottomNavigation.setOnItemSelectedListener {
             when(it.itemId) {
                 R.id.ic_favorites -> replaceFragment(favoritesFragment)
                 R.id.ic_home -> replaceFragment(homeFragment)

@@ -11,17 +11,12 @@ import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.ActivityBrowseCardsBinding
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-
 
 class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
-
     private lateinit var binding: ActivityBrowseCardsBinding
     private lateinit var adapter: cardAdapter
-    private lateinit var CardList : CardResponseList
-
+    private lateinit var cardList: CardResponseList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,12 +27,12 @@ class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener 
     }
 
     private fun initRecyclerView() {
-        adapter = cardAdapter(CardList) { onItemSelected(it) }
+        adapter = cardAdapter(cardList) { onItemSelected(it) }
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewCards.adapter = adapter
     }
 
-    fun onItemSelected(cards: CardResponse) {
+    private fun onItemSelected(cards: CardResponse) {
         if (cards.cardTypeId == 3 && cards.cardSetId == 17) {
             intent = Intent(this, Heroe_skinInfoActivity::class.java)
         } else {
@@ -47,24 +42,24 @@ class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener 
         startActivity(intent)
     }
 
-    private fun searchByName(query: String) {
-        runOnUiThread {
-            if (APIrest.getCards(query) == 2){
-                CardList = APIrest.cards!!
-                adapter.notifyDataSetChanged()
-            }else{
-                showError()
-            }
-        }
-    }
+//    private fun searchByName(query: String) {
+//        runOnUiThread {
+//            if (APIrest.getCards(query) == 2) {
+//                cardList = APIrest.cards!!
+//                adapter.notifyDataSetChanged()
+//            } else {
+//                showError()
+//            }
+//        }
+//    }
 
     private fun showError() {
         Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
-        if(!query.isNullOrEmpty()){
-            searchByName(query)
+        if (!query.isNullOrEmpty()) {
+            //searchByName(query)
         }
         return true
     }
