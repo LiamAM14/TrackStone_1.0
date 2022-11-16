@@ -14,7 +14,6 @@ import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.CardInfoActivity
 import es.unex.trackstone10.Heroe_skinInfoActivity
-import es.unex.trackstone10.R
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentCardsBinding
 
@@ -55,7 +54,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchByName(query: String) {
         APIrest.getCards(query)
-        if(APIrest.cards!= null){
+        if (APIrest.cards != null) {
             cardList = APIrest.cards
             adapter.notifyDataSetChanged()
         } else {
@@ -78,5 +77,3 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         return true
     }
 }
-
-

@@ -18,7 +18,7 @@ interface APIService {
     suspend fun getCardsByName(
         @Query("locale") locale: String,
         @Query("textFilter") name: String
-    ): CardResponseList
+    ): Response<CardResponseList>
 
 
 }
