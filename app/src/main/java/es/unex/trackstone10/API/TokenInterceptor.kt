@@ -5,7 +5,6 @@ import okhttp3.Response
 
 class TokenInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        APIrest.getToken()
         val header = APIrest.token?.access_token
         val request =
             chain.request().newBuilder()

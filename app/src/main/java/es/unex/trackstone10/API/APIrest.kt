@@ -3,6 +3,7 @@ package es.unex.trackstone10.API
 import android.util.Base64
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -15,8 +16,7 @@ object APIrest {
     var tokenExpire: Int? = null
     var cards : CardResponseList? = null
 
-    fun getToken(): Int {
-        var answer = 1
+    fun getToken(){
         val credentials = "$client_id:$client_secret"
         val credentialsData = credentials.toByteArray()
         val credentialsBase64 = Base64.encodeToString(credentialsData, Base64.NO_WRAP)
@@ -35,13 +35,9 @@ object APIrest {
             if (call.isSuccessful) {
                 if (token != null) {
                     tokenExpire = token?.expires_in
-                    answer = 2
                 }
-            } else {
-                answer = 0
             }
         }
-        return answer
     }
 
     fun buildClientInterceptor(): OkHttpClient{
@@ -60,7 +56,7 @@ object APIrest {
                 .client(client)
                     .build()
 
-            val call = retrofit.create(APIService::class.java).getCardsByName("en_US",query)
+            val call = retrofit.create(APIService::class.java).getCardsByName("en_US","$query")
 
             cards = call.body()
         }

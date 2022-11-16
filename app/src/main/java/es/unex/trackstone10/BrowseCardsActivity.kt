@@ -19,6 +19,7 @@ class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener 
     private lateinit var cardList: CardResponseList
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        
         super.onCreate(savedInstanceState)
         binding = ActivityBrowseCardsBinding.inflate(layoutInflater)
         setContentView(binding.root)

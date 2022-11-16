@@ -16,6 +16,7 @@ import es.unex.trackstone10.CardInfoActivity
 import es.unex.trackstone10.Heroe_skinInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentCardsBinding
+import kotlinx.coroutines.delay
 
 class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -53,6 +54,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun searchByName(query: String) {
+        APIrest.getToken()
         APIrest.getCards(query)
         if (APIrest.cards != null) {
             cardList = APIrest.cards
@@ -62,18 +64,19 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-    private fun showError() {
-        Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
-    }
 
-    override fun onQueryTextSubmit(query: String?): Boolean {
-        if (!query.isNullOrEmpty()) {
-            searchByName(query)
-        }
-        return true
-    }
+private fun showError() {
+    Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
+}
 
-    override fun onQueryTextChange(newText: String?): Boolean {
-        return true
+override fun onQueryTextSubmit(query: String?): Boolean {
+    if (!query.isNullOrEmpty()) {
+        searchByName(query)
     }
+    return true
+}
+
+override fun onQueryTextChange(newText: String?): Boolean {
+    return true
+}
 }

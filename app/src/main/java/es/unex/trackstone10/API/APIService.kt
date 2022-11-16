@@ -8,7 +8,7 @@ interface APIService {
 
     @FormUrlEncoded
     @POST("/token")
-    suspend fun getTokenCall(
+    fun getTokenCall(
         @Header("Authorization") authorization: String,
         @Field("grant_type") grant_type: String
     ): Call<Token>
