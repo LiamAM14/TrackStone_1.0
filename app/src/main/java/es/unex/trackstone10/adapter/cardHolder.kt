@@ -3,8 +3,7 @@ package es.unex.trackstone10.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.Glide
-import es.unex.trackstone10.CardResponse
-import es.unex.trackstone10.Cards
+import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.databinding.ItemCardBinding
 
 class cardHolder(view: View) : ViewHolder(view) {

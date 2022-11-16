@@ -12,7 +12,8 @@ object APIrest {
     private val client_id = "80a38acd60a44a37a3184b1940b7d251"
     private val client_secret = "XBLQx7o9BYS4JHMCo3U5Vtkx9TJBgmgw"
     var token: Token? = null
-    private var tokenExpire: Int? = null
+    var tokenExpire: Int? = null
+    var cards : CardResponseList? = null
 
     fun getToken(): Int {
         var answer = 1
@@ -34,9 +35,42 @@ object APIrest {
             if (call.isSuccessful) {
                 if (token != null) {
                     tokenExpire = token?.expires_in
+                    answer = 2
                 }
             } else {
                 answer = 0
+            }
+        }
+        return answer
+    }
+
+    fun buildClientInterceptor(): OkHttpClient{
+        return OkHttpClient.Builder()
+            .addInterceptor(TokenInterceptor())
+            .build()
+    }
+
+    fun getCards(query: String): Int{
+        var answer = 1
+        CoroutineScope(Dispatchers.IO).launch{
+            val client = buildClientInterceptor()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://us.api.blizzard.com/hearthstone/cards?locale=en_US")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                    .build()
+
+            val call = retrofit.create(APIService::class.java).getCardsByName("&textFilter=$query")
+
+            cards = call.body()
+
+            if(call.isSuccessful){
+                if(cards != null){
+                    answer = 2
+                }
+            } else{
+                answer = 1
             }
         }
         return answer
