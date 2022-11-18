@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.API.APIrest
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.CardInfoActivity
@@ -35,7 +34,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun initRecyclerView() {
-        adapter = cardAdapter(heroList) { onItemSelected(it) }
+        adapter = cardAdapter(heroList?.cards!!) { onItemSelected(it) }
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerViewCards.adapter = adapter
     }
