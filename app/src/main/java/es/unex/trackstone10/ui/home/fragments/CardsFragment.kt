@@ -2,6 +2,9 @@ package es.unex.trackstone10.ui.home.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,20 +12,24 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.API.APIrest
-import es.unex.trackstone10.API.CardResponse
-import es.unex.trackstone10.API.CardResponseList
+import es.unex.trackstone10.API.*
 import es.unex.trackstone10.CardInfoActivity
 import es.unex.trackstone10.Heroe_skinInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentCardsBinding
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
+import okhttp3.OkHttpClient
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: FragmentCardsBinding
     private lateinit var adapter: cardAdapter
-    private var cardList: CardResponseList? = null
+    private val handler = Handler(Looper.getMainLooper())
+    private var cardList = (mutableListOf<CardResponse>())
+    var token: Token? = null
+    var tokenExpire: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,6 +39,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         val view = binding.root
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
+        APIToken.getToken()
         return view
     }
 
@@ -53,14 +61,39 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         startActivity(intent)
     }
 
+
+
+
     private fun searchByName(query: String) {
-        APIrest.getToken()
-        APIrest.getCards(query)
-        if (APIrest.cards != null) {
-            cardList = APIrest.cards
-            adapter.notifyDataSetChanged()
-        } else {
-            showError()
+        CoroutineScope(Dispatchers.IO).launch {
+            //Se crea cliente http
+            val client = OkHttpClient.Builder()
+                .addInterceptor(TokenInterceptor())
+                .build()
+
+            //Se crea retrofit usando el cliente creado encima
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
+            //Se lleva a cabo la llamada GET a la API
+            val call = retrofit.create(APIService::class.java).getCardsByName(query, "en_US")
+
+            val cards = call.body()
+            handler.post {
+                if (call.isSuccessful) {
+                    if (cards != null) {
+                        val cardsReceived = cards.cards
+                        cardList.clear()
+                        cardList.addAll(cardsReceived)
+                        adapter.notifyDataSetChanged()
+                    }
+                } else {
+                    showError()
+                }
+            }
         }
     }
 

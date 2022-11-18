@@ -7,7 +7,7 @@ import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.R
 
-class cardAdapter(val cardsList: CardResponseList?, private val onClickListener: (CardResponse) -> Unit) : RecyclerView.Adapter<cardHolder>() {
+class cardAdapter(val cardsList: List<CardResponse>, private val onClickListener: (CardResponse) -> Unit) : RecyclerView.Adapter<cardHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cardHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -15,10 +15,10 @@ class cardAdapter(val cardsList: CardResponseList?, private val onClickListener:
     }
 
     override fun onBindViewHolder(holder: cardHolder, position: Int) {
-        val item = cardsList?.cards!![position]
+        val item = cardsList[position]
         holder.render(item, onClickListener)
     }
 
-    override fun getItemCount(): Int = cardsList?.cards?.size?: 0
+    override fun getItemCount(): Int = cardsList.size
 
 }
