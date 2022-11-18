@@ -81,7 +81,7 @@ class CardBackEntityCRUD private constructor(context: Context){
         @SuppressLint("Range")
         fun getCardBackFromCursor(cursor: Cursor): CardBackEntity{
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_ID))
-            val url = cursor.getInt(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_URL))
+            val url = cursor.getString(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_URL))
             val cardback = CardBackEntity(id,url)
             Log.d("CardBackEntityCRUD",cardback.toLog())
             return cardback

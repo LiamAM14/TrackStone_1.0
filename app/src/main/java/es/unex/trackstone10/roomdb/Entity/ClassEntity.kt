@@ -22,7 +22,7 @@ class ClassEntity {
     }
 
 
-    constructor(id: Int, idhero: Int, url: Int){
+    constructor(id: Int, idhero: String, url: String){
         this.id = id
         this.idhero = idhero
         this.url = url

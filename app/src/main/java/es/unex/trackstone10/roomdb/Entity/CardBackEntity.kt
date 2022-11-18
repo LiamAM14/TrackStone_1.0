@@ -18,7 +18,7 @@ class CardBackEntity {
         this.url = url
     }
 
-    constructor(id: Int, url: Int){
+    constructor(id: Int, url: String){
         this.id = id
         this.url = url
     }

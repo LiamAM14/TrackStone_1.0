@@ -83,8 +83,8 @@ class ClassEntityCRUD private constructor(context: Context){
         @SuppressLint("Range")
         fun getClassFromCursor(cursor: Cursor): ClassEntity{
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_ID))
-            val idhero = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.HERO_ID))
-            val url = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_URL))
+            val idhero = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.HERO_ID))
+            val url = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_URL))
             val classE = ClassEntity(id,idhero,url)
             Log.d("ClassEntityCRUD", classE.toLog())
             return classE
