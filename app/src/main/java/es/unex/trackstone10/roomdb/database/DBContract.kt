@@ -20,12 +20,13 @@ class DBContract private constructor() {
     object CardEntity : BaseColumns{
         const val TABLE_NAME = "card_table"
         const val CARD_ID = "id"
+        const val CARD_NAME = "name"
         const val CARD_INFO = "info"
         const val CARD_TYPE = "type"
         const val CARD_RACE = "race"
     }
 
-    object classEntity : BaseColumns{
+    object ClassEntity : BaseColumns{
         const val TABLE_NAME = "class_table"
         const val CLASS_ID = "id"
         const val HERO_ID = "id_hero"

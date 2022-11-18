@@ -46,7 +46,7 @@ class UserEntityCRUD private constructor(context: Context){
                     users.add(getUserFromCursor(cursor))
                 } while(cursor.moveToNext())
             }
-        cursor?.close()
+        cursor.close()
         }
         return users
     }
@@ -131,22 +131,21 @@ class UserEntityCRUD private constructor(context: Context){
     }
 
     companion object {
-    private var mInstance: UserEntityCRUD? = null
-    fun getInstace(context: Context): UserEntityCRUD? {
-        if(mInstance == null) mInstance = UserEntityCRUD(context)
-        return mInstance
-    }
+        private var mInstance: UserEntityCRUD? = null
+        fun getInstance(context: Context): UserEntityCRUD? {
+            if(mInstance == null) mInstance = UserEntityCRUD(context)
+            return mInstance
+        }
 
         @SuppressLint("Range")
         fun getUserFromCursor(cursor: Cursor): UserEntity{
-        val id = cursor.getInt(cursor.getColumnIndex(DBContract.UserEntity.USER_ID))
-        val username = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.USERNAME))
-        val password = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.PASSWORD))
-        val mail = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.MAIL))
-        val user = UserEntity(id,username,password,mail)
-        Log.d("UserEntityCRUD",user.toLog())
-        return user
-
+            val id = cursor.getInt(cursor.getColumnIndex(DBContract.UserEntity.USER_ID))
+            val username = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.USERNAME))
+            val password = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.PASSWORD))
+            val mail = cursor.getString(cursor.getColumnIndex(DBContract.UserEntity.MAIL))
+            val user = UserEntity(id,username,password,mail)
+            Log.d("UserEntityCRUD",user.toLog())
+            return user
         }
     }
 }

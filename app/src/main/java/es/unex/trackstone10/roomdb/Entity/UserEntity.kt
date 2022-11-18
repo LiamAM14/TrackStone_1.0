@@ -42,7 +42,7 @@ class UserEntity {
 
 
     override fun toString() : String{
-        return (id.toString() + ITEM_SEPARATOR + username + ITEM_SEPARATOR + password + ITEM_SEPARATOR + MAIL)
+        return (id.toString() + ITEM_SEPARATOR + username + ITEM_SEPARATOR + password + ITEM_SEPARATOR + mail)
     }
     fun toLog(): String {
         return ("ID: " + id + ITEM_SEPARATOR + "Password: *********" + ITEM_SEPARATOR + "Username: " + username + ITEM_SEPARATOR + "Mail: " + mail)
@@ -51,7 +51,7 @@ class UserEntity {
 
     companion object {
         @Ignore
-        const val USER_ID:String = "id";
+        const val USER_ID:String = "id"
         @Ignore
         const val USERNAME:String = "username"
         @Ignore
@@ -61,24 +61,10 @@ class UserEntity {
         @Ignore
         val ITEM_SEPARATOR:String = System.getProperty("line.separator") as String
 
-
         fun packageIntent(intent: Intent, username: String?,password: String?,mail: String?){
-            intent.putExtra(UserEntity.USERNAME,username)
-            intent.putExtra(UserEntity.PASSWORD,password)
-            intent.putExtra(UserEntity.MAIL,mail)
+            intent.putExtra(USERNAME,username)
+            intent.putExtra(PASSWORD,password)
+            intent.putExtra(MAIL,mail)
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

@@ -10,10 +10,10 @@ class UserManagerDBHelper (context: Context?) :
         db?.execSQL(SQL_CREATE_USERS)
     }
 
-    override fun onUpgrade (db: SQLiteDatabase,oldVersion: Int,newVersion : Int){
-        db.execSQL(SQL_DELETE_USERS)
+    override fun onUpgrade (db: SQLiteDatabase?,oldVersion: Int,newVersion : Int){
+        db?.execSQL(SQL_DELETE_USERS)
         onCreate(db)
-        }
+    }
 
 
 

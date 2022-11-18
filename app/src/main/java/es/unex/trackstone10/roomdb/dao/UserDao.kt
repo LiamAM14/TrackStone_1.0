@@ -19,5 +19,5 @@ interface UserDao {
     fun deleteAll()
 
     @Update
-    fun update(user: UserEntity?) : Int
+    fun update(user: UserEntity?): Int
 }
