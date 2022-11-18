@@ -3,7 +3,9 @@ package es.unex.trackstone10
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Insert
 import es.unex.trackstone10.databinding.ActivityRegisterBinding
+import es.unex.trackstone10.roomdb.Entity.UserEntity
 
 class RegisterActivity : AppCompatActivity() {
 
