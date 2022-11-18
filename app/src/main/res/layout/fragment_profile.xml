@@ -133,7 +133,23 @@
         app:layout_constraintTop_toTopOf="@+id/profilePasswordChange" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/closeSessionButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/logOut"
+        android:textColor="@color/purpleCute"
+        app:layout_constraintBottom_toTopOf="@+id/deleteUserButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/deleteUserButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

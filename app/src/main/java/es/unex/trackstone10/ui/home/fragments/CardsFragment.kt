@@ -64,19 +64,18 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         }
     }
 
-
-private fun showError() {
-    Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
-}
-
-override fun onQueryTextSubmit(query: String?): Boolean {
-    if (!query.isNullOrEmpty()) {
-        searchByName(query)
+    private fun showError() {
+        Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
     }
-    return true
-}
 
-override fun onQueryTextChange(newText: String?): Boolean {
-    return true
-}
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (!query.isNullOrEmpty()) {
+            searchByName(query)
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        return true
+    }
 }

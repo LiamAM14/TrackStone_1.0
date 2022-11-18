@@ -17,6 +17,7 @@
     <string name="deckName">Deck name</string>
     <string name="craftCost">Craft cost</string>
     <string name="deleteUser">Delete user</string>
+    <string name="logOut">Log out from Application</string>
     <string name="changeDataProfileButton">Change</string>
     <string name="card_description">Image of a card</string>
     <string name="editDeck">Edit</string>
