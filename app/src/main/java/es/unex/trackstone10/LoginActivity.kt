@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -19,26 +20,38 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.loginButton.setOnClickListener{
-            if(binding.editTextTextPersonName.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty()) {
-                AppExecutors.instance?.diskIO()?.execute{
-                    val db = TrackstoneDatabase.getInstance(this)
-                    val user = db?.userdao?.getUserByName(binding.editTextTextPersonName.text.toString())
-                    if(user != null){
-                        if(user.password.toString() == binding.editTextPassword.text.toString()){
-                            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-                            startActivity(intent)
-                        }
-                        else{
-                            runOnUiThread(Runnable(){
-                                Toast.makeText(this,"Wrong password", Toast.LENGTH_SHORT).show()
+        val sharedPreferences = getSharedPreferences("userid",Context.MODE_PRIVATE)
+        var userid = sharedPreferences.getInt("userid",0)
+
+        if(userid != 0){
+            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
+        }
+        else {
+            binding.loginButton.setOnClickListener {
+                if (binding.editTextTextPersonName.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty()) {
+                    var edit = sharedPreferences.edit()
+                    AppExecutors.instance?.diskIO()?.execute {
+                        val db = TrackstoneDatabase.getInstance(this)
+                        val user =
+                            db?.userdao?.getUserByName(binding.editTextTextPersonName.text.toString())
+                        if (user != null) {
+                            if (user.password.toString() == binding.editTextPassword.text.toString()) {
+                                edit.putInt("userid",user.id)
+                                edit.commit()
+                                val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
+                                startActivity(intent)
+                            } else {
+                                runOnUiThread(Runnable() {
+                                    Toast.makeText(this, "Wrong password", Toast.LENGTH_SHORT)
+                                        .show()
+                                })
+                            }
+                        } else {
+                            runOnUiThread(Runnable() {
+                                Toast.makeText(this, "User not found", Toast.LENGTH_SHORT).show()
                             })
                         }
-                    }
-                    else{
-                        runOnUiThread(Runnable(){
-                            Toast.makeText(this,"User not found", Toast.LENGTH_SHORT).show()
-                        })
                     }
                 }
             }
