@@ -49,8 +49,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cards: CardResponse) {
-        val intent: Intent
-        intent = Intent(activity, CardInfoActivity::class.java)
+        val intent: Intent = Intent(activity, CardInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }

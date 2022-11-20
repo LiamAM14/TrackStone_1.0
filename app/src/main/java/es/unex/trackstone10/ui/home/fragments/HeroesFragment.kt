@@ -51,11 +51,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cards: CardResponse) {
-        val intent: Intent
-
-        intent = Intent(activity, Heroe_skinInfoActivity::class.java)
-        activity?.startActivity(intent)
-
+        val intent: Intent = Intent(activity, Heroe_skinInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }
