@@ -8,6 +8,7 @@ data class CardResponse (
     var slug: String? = null,
     var classId: Int? = null,
     var multiClassIds: List<Int>? = null,
+    var minionTypeId: Int? = null,
     var spellSchoolId: Int? = null,
     var cardTypeId: Int? = null,
     var cardSetId: Int? = null,

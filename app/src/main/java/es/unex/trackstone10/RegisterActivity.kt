@@ -28,6 +28,7 @@ class RegisterActivity : AppCompatActivity() {
                             binding.editTextEmail.text.toString()
                         )
                     )
+                    val user = db?.userdao?.getAll()
                 }
                 val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
                 startActivity(intent)

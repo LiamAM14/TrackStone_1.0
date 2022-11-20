@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.databinding.ActivityCardInfoBinding
+import es.unex.trackstone10.roomdb.Entity.CardEntity
+import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
 class CardInfoActivity() : AppCompatActivity() {
 
@@ -33,6 +35,63 @@ class CardInfoActivity() : AppCompatActivity() {
         }
         binding.cardDetail4.text = "Artist: ${cards.artistName}"
         Glide.with(binding.cardDetails.context).load(cards.image).into(binding.cardDetails)
+
+
+        binding.addDeleteFavoriteButton.setOnClickListener{
+            AppExecutors.instance?.diskIO()?.execute{
+                val db = TrackstoneDatabase.getInstance(this)
+                var race: String = ""
+                if(cards.cardTypeId == 4 ||cards.cardTypeId == 5) {
+                    when(cards.cardTypeId){
+                        4 -> when(cards.spellSchoolId){
+                            1 -> race = "Arcane"
+                            2 -> race = "Fire"
+                            3 -> race = "Frost"
+                            4 -> race = "Nature"
+                            5 -> race = "Holy"
+                            6 -> race = "Shadow"
+                            7 -> race = "Fel"
+                        }
+                        5 -> when(cards.minionTypeId){
+                            1 -> race = "Blood elf"
+                            2 -> race = "Draenei"
+                            3 -> race = "Dwarf"
+                            4 -> race = "Human"
+                            6 -> race = "Night elf"
+                            7 -> race = "Orc"
+                            8 -> race = "Tauren"
+                            9 -> race = "Troll"
+                            10 -> race = "Undead"
+                            14 -> race = "Murloc"
+                            15 -> race = "Demon"
+                            17 -> race = "Mech"
+                            18 -> race = "Elemental"
+                            20 -> race = "Beast"
+                            21 -> race = "Totem"
+                            23 -> race = "Pirate"
+                            24 -> race = "Dragon"
+                            26 -> race = "All"
+                            43 -> race = "Quilboar"
+                            88 -> race = "Half-Orc"
+                            92 -> race = "Naga"
+                            93 -> race = "Old God"
+                            94 -> race = "Pandaren"
+                            95 -> race = "Gronn"
+                        }
+                    }
+                }
+                db?.carddao?.insert(
+                    CardEntity(
+                        cards.name,
+                        cards.image,
+                        binding.cardDetail3.text.toString(),
+                        race
+                    )
+                )
+                val card = db?.carddao?.getAll()
+            }
+
+        }
     }
 
 }
