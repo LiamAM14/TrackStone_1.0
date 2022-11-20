@@ -24,6 +24,7 @@ class CardEntity {
     var race: String? = String()
 
 
+
     @Ignore
     internal constructor(name: String?,info: String?,type: String?, race: String?){
         this.name = name

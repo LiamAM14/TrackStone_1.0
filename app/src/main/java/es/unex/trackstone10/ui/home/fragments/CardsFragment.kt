@@ -28,8 +28,6 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var adapter: cardAdapter
     private val handler = Handler(Looper.getMainLooper())
     private var cardList = (mutableListOf<CardResponse>())
-    var token: Token? = null
-    var tokenExpire: Int? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

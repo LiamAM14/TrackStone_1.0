@@ -21,4 +21,11 @@ interface APIService {
     ): Response<CardResponseList>
 
 
+    @GET("/hearthstone/cardbacks")
+    suspend fun getCardBacksByName(
+        @Query("locale") locale: String,
+        @Query("textFilter") name: String
+    ): Response<CardBackResponseList>
+
+
 }

@@ -41,7 +41,7 @@ class HomeFragment : Fragment() {
 
         tabLayout.getTabAt(0)!!.setIcon(R.drawable.browse)
         tabLayout.getTabAt(1)!!.setIcon(R.drawable.cardback)
-        tabLayout.getTabAt(2)!!.setIcon(R.drawable.hero)
+        //tabLayout.getTabAt(2)!!.setIcon(R.drawable.hero)
 
     }
 
@@ -51,7 +51,7 @@ class HomeFragment : Fragment() {
 
         adapter.addFragment(CardsFragment(), "Cards")
         adapter.addFragment(CardBacksFragment(), "Backs")
-        adapter.addFragment(HeroesFragment(), "Heroes")
+        //adapter.addFragment(HeroesFragment(), "Heroes")
 
         viewPager.adapter = adapter
 
