@@ -4,7 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.API.CardResponse
-import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.R
 
 class cardAdapter(val cardsList: List<CardResponse>, private val onClickListener: (CardResponse) -> Unit) : RecyclerView.Adapter<cardHolder>() {
