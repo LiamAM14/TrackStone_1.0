@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import es.unex.giiis.asee.todomanager_dbkotlin.AppExecutors
 import es.unex.trackstone10.databinding.ActivityLoginBinding
 import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase

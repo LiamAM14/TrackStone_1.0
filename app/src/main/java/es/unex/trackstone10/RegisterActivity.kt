@@ -3,12 +3,9 @@ package es.unex.trackstone10
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.room.Insert
-import es.unex.giiis.asee.todomanager_dbkotlin.AppExecutors
 import es.unex.trackstone10.databinding.ActivityRegisterBinding
 import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
-import es.unex.trackstone10.roomdb.dao.UserEntityCRUD
 
 class RegisterActivity : AppCompatActivity() {
 
