@@ -6,16 +6,14 @@ import android.database.sqlite.SQLiteOpenHelper
 
 class UserManagerDBHelper (context: Context?) :
         SQLiteOpenHelper(context, DATABASE_NAME,null, DATABASE_VERSION){
-    override fun onCreate(db: SQLiteDatabase?) {
-        db?.execSQL(SQL_CREATE_USERS)
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(SQL_CREATE_USERS)
     }
 
-    override fun onUpgrade (db: SQLiteDatabase?,oldVersion: Int,newVersion : Int){
-        db?.execSQL(SQL_DELETE_USERS)
+    override fun onUpgrade (db: SQLiteDatabase,oldVersion: Int,newVersion : Int){
+        db.execSQL(SQL_DELETE_USERS)
         onCreate(db)
     }
-
-
 
     companion object{
         private const val DATABASE_VERSION = 1
@@ -26,7 +24,8 @@ class UserManagerDBHelper (context: Context?) :
                 DBContract.UserEntity.USER_ID + " INTEGER PRIMARY KEY," +
                 DBContract.UserEntity.USERNAME + TEXT_TYPE + COMMA_SEP +
                 DBContract.UserEntity.PASSWORD + TEXT_TYPE + COMMA_SEP +
-                DBContract.UserEntity.MAIL + TEXT_TYPE + " )"
+                DBContract.UserEntity.MAIL + TEXT_TYPE +
+                " )"
         private const val SQL_DELETE_USERS =
             "DROP TABLE IF EXISTS " + DBContract.UserEntity.TABLE_NAME
     }

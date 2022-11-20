@@ -10,7 +10,7 @@ import es.unex.trackstone10.roomdb.dao.*
 @Database(entities = [UserEntity::class,CardBackEntity::class,ClassEntity::class,CardEntity::class,DeskEntity::class], version = 1)
 abstract class TrackstoneDatabase: RoomDatabase() {
 
-    abstract val user_dao: UserDao?
+    abstract val userdao: UserDao?
 
 
     companion object{

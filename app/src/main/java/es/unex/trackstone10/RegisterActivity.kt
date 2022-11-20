@@ -4,8 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Insert
+import es.unex.giiis.asee.todomanager_dbkotlin.AppExecutors
 import es.unex.trackstone10.databinding.ActivityRegisterBinding
 import es.unex.trackstone10.roomdb.Entity.UserEntity
+import es.unex.trackstone10.roomdb.TrackstoneDatabase
+import es.unex.trackstone10.roomdb.dao.UserEntityCRUD
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -19,6 +22,16 @@ class RegisterActivity : AppCompatActivity() {
         binding.registerButton.setOnClickListener {
             if (binding.editTextEmail.text.isNotEmpty() && binding.editTextTextPersonName.text.isNotEmpty()
                 && binding.editTextPassword.text.isNotEmpty() && binding.confirmPassword.text.toString() == binding.editTextPassword.text.toString()) {
+                AppExecutors.instance?.diskIO()?.execute {
+                    val db = TrackstoneDatabase.getInstance(this)
+                    db?.userdao?.insert(
+                            UserEntity(
+                            binding.editTextTextPersonName.text.toString(),
+                            binding.editTextPassword.text.toString(),
+                            binding.editTextEmail.text.toString()
+                        )
+                    )
+                }
                 val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
                 startActivity(intent)
             }

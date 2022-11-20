@@ -37,18 +37,18 @@ class UserEntityCRUD private constructor(context: Context){
             null,
             sortOrder
         )
-
         val users: ArrayList<UserEntity> = ArrayList()
-        if(cursor != null){
-            if(cursor.count > 0){
+        if (cursor != null) {
+            if (cursor.count > 0) {
                 cursor.moveToFirst()
                 do {
                     users.add(getUserFromCursor(cursor))
-                } while(cursor.moveToNext())
+                } while (cursor.moveToNext())
             }
-        cursor.close()
+            cursor.close()
         }
         return users
+
     }
 
     fun insert(user: UserEntity) : Long{
@@ -69,6 +69,41 @@ class UserEntityCRUD private constructor(context: Context){
         val selection: String? = null
         val selectionArgs: Array<String> ? = null
         db?.delete(DBContract.UserEntity.TABLE_NAME,selection,selectionArgs)
+    }
+
+    fun getUserByName(username:String): UserEntity {
+        val db = mDbHelper?.readableDatabase
+
+            val projection = arrayOf(
+                DBContract.UserEntity.USER_ID,
+                DBContract.UserEntity.USERNAME,
+                DBContract.UserEntity.PASSWORD,
+                DBContract.UserEntity.MAIL
+            )
+            val selection: String? = DBContract.UserEntity.USERNAME + " = ?"
+            val selectionArgs: Array<String>? = arrayOf(username)
+            val sortOrder: String? = null
+            val cursor = db?.query(
+                DBContract.UserEntity.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                sortOrder
+            )
+
+        var user:UserEntity = UserEntity("","","")
+        if(cursor != null){
+            if(cursor.count > 0){
+                cursor.moveToFirst()
+                do {
+                    user = getUserFromCursor(cursor)
+                } while(cursor.moveToNext() && user.username != username)
+            }
+            cursor.close()
+        }
+        return user
     }
 
     fun updateUsername(ID: Int, username : String) : Int? {

@@ -20,4 +20,7 @@ interface UserDao {
 
     @Update
     fun update(user: UserEntity?): Int
+
+    @Query("SELECT * FROM user_table WHERE username = :username")
+    fun getUserByName(username:String): UserEntity
 }
