@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.unex.trackstone10.API.APIToken
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.API.CardResponseList
 import es.unex.trackstone10.CardInfoActivity
@@ -30,6 +31,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
         val view = binding.root
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
+        APIToken.getToken()
         return view
     }
 

@@ -78,7 +78,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
             handler.post{
                 if(call.isSuccessful){
                     if(cardbacks != null) {
-                        val cardbackReceived = cardbacks.cardbacks
+                        val cardbackReceived = cardbacks.cardBacks
                         cardbackList.clear()
                         cardbackList.addAll(cardbackReceived)
                         adapter.notifyDataSetChanged()
