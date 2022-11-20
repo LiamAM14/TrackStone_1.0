@@ -38,6 +38,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
         APIToken.getToken()
+        getCardsRecycler()
         return view
     }
 
@@ -49,17 +50,46 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun onItemSelected(cards: CardResponse) {
         val intent: Intent
-        if (cards.cardTypeId == 3 && cards.cardSetId == 17) {
-            intent = Intent(activity, Heroe_skinInfoActivity::class.java)
-            activity?.startActivity(intent)
-        } else {
-            intent = Intent(activity, CardInfoActivity::class.java)
-        }
+        intent = Intent(activity, CardInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }
 
 
+    private fun getCardsRecycler() {
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(3000)
+            //Se crea cliente http
+            val client = OkHttpClient.Builder()
+                .addInterceptor(TokenInterceptor())
+                .build()
+
+            //Se crea retrofit usando el cliente creado encima
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
+            //Se lleva a cabo la llamada GET a la API
+            val call = retrofit.create(APIService::class.java)
+                .getCards("standard", "groupByClass:asc,manaCost:asc", "en_US")
+
+            val cards = call.body()
+            handler.post {
+                if (call.isSuccessful) {
+                    if (cards != null) {
+                        val cardsReceived = cards.cards
+                        cardList.clear()
+                        cardList.addAll(cardsReceived)
+                        adapter.notifyDataSetChanged()
+                    }
+                } else {
+                    showError()
+                }
+            }
+        }
+    }
 
 
     private fun searchByName(query: String) {
@@ -77,7 +107,8 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
                 .build()
 
             //Se lleva a cabo la llamada GET a la API
-            val call = retrofit.create(APIService::class.java).getCardsByName(query, "en_US")
+            val call =
+                retrofit.create(APIService::class.java).getCardsByName(query, "standard","groupByClass:asc,manaCost:asc", "en_US")
 
             val cards = call.body()
             handler.post {

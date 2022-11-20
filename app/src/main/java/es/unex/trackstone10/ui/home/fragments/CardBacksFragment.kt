@@ -23,6 +23,7 @@ import es.unex.trackstone10.databinding.FragmentCardBacksBinding
 import es.unex.trackstone10.databinding.FragmentCardsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -44,6 +45,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
         APIToken.getToken()
+        getCardBacks()
         return view
     }
 
@@ -60,6 +62,39 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
 
     }
 
+    private fun getCardBacks(){
+        CoroutineScope(Dispatchers.IO).launch {
+            delay(1000)
+            val client = OkHttpClient.Builder()
+                .addInterceptor(TokenInterceptor())
+                .build()
+
+            val retrofit = Retrofit.Builder()
+                .baseUrl("https://us.api.blizzard.com/hearthstone/cardbacks/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(client)
+                .build()
+
+            val call = retrofit.create(APIService::class.java).getCardBacksByName("en_US")
+
+            val cardbacks = call.body()
+            handler.post{
+                if(call.isSuccessful){
+                    if(cardbacks != null) {
+                        val cardbackReceived = cardbacks.cardBacks
+                        cardbackList.clear()
+                        cardbackList.addAll(cardbackReceived)
+                        adapter.notifyDataSetChanged()
+                    }
+
+                } else{
+                    showError()
+                }
+            }
+        }
+
+    }
+
     private fun searchByName(query: String){
         CoroutineScope(Dispatchers.IO).launch {
             val client = OkHttpClient.Builder()
@@ -72,7 +107,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
                 .client(client)
                 .build()
 
-            val call = retrofit.create(APIService::class.java).getCardBacksByName("en_US",query)
+            val call = retrofit.create(APIService::class.java).getCardBacksByName("en_US", query)
 
             val cardbacks = call.body()
             handler.post{
@@ -98,6 +133,8 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
             searchByName(query)
+        }else{
+            getCardBacks()
         }
         return true
     }

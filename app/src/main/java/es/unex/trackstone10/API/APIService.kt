@@ -13,13 +13,26 @@ interface APIService {
         @Field("grant_type") grant_type: String
     ): Call<Token>
 
+    @GET("/hearthstone/cards")
+    suspend fun getCards(
+        @Query("set") set: String,
+        @Query("sort") byClass: String,
+        @Query("locale") locale: String
+    ): Response<CardResponseList>
+
 
     @GET("/hearthstone/cards")
     suspend fun getCardsByName(
         @Query("textFilter") name: String,
+        @Query("set") set: String,
+        @Query("sort") byClass: String,
         @Query("locale") locale: String
     ): Response<CardResponseList>
 
+    @GET("/hearthstone/cardbacks")
+    suspend fun getCardBacksByName(
+        @Query("locale") locale: String
+    ): Response<CardBackResponseList>
 
     @GET("/hearthstone/cardbacks")
     suspend fun getCardBacksByName(
@@ -31,6 +44,15 @@ interface APIService {
     @GET("/hearthstone/cards")
     suspend fun getHeroByName(
         @Query("textFilter") name: String,
+        @Query("set") set: String,
+        @Query("sort") byClass: String,
+        @Query("locale") locale: String
+    ): Response<CardResponseList>
+
+    @GET("/hearthstone/cards")
+    suspend fun getHeroes(
+        @Query("set") set: String,
+        @Query("sort") byClass: String,
         @Query("locale") locale: String
     ): Response<CardResponseList>
 
