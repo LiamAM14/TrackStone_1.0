@@ -12,11 +12,31 @@
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="55dp"
         android:contentDescription="@string/logo_description"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileName"
         app:srcCompat="@drawable/hearthstone_logo" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/testInfo"
+        app:layout_constraintStart_toEndOf="@+id/profileDetail"
+        app:layout_constraintTop_toTopOf="@+id/profileDetail" />
+
+    <TextView
+        android:id="@+id/textViewUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/testInfo"
+        app:layout_constraintStart_toEndOf="@+id/profileDetail"
+        app:layout_constraintTop_toTopOf="@+id/textViewEmail" />
 
     <TextView
         android:id="@+id/profileName"
@@ -41,7 +61,7 @@
         android:layout_width="219dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:backgroundTint="@color/white"
         android:ems="10"
         android:hint="@string/email"
