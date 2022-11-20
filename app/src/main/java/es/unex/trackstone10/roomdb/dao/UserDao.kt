@@ -23,4 +23,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user_table WHERE username = :username")
     fun getUserByName(username:String): UserEntity
+
+    @Query("SELECT * FROM user_table WHERE id = :userid")
+    fun getUserById(userid:Int?): UserEntity
 }
