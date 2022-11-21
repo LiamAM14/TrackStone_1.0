@@ -1,5 +1,6 @@
 package es.unex.trackstone10.ui.home.fragments
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -7,8 +8,10 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.APIService
@@ -122,9 +125,15 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
                 } else{
                     showError()
                 }
-            }
+                hideKeyboard()            }
         }
     }
+
+    private fun hideKeyboard() {
+            val imm = activity?.getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.CBroot.windowToken, 0)
+    }
+
 
     private fun showError() {
         Toast.makeText(activity, "Ha ocurrido un error", Toast.LENGTH_SHORT).show()
