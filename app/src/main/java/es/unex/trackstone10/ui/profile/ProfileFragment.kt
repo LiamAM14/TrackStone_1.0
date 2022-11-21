@@ -9,10 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import es.unex.trackstone10.AppExecutors
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.LoginActivity
-import es.unex.trackstone10.R
+import es.unex.trackstone10.*
 import es.unex.trackstone10.databinding.FragmentProfileBinding
 import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
@@ -44,11 +41,13 @@ class ProfileFragment : Fragment() {
                 val db = TrackstoneDatabase.getInstance(activity)
                 var user = db?.userdao?.getUserById(userid)
                 if (user != null) {
-                    user.mail = binding.profileEmailChange.toString()
+                    user.mail = binding.profileEmailChange.text.toString()
                     db?.userdao?.update(user)
                 }
             }
             Toast.makeText(activity, "Email updated!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
         }
 
         binding.Change2.setOnClickListener {
@@ -56,11 +55,13 @@ class ProfileFragment : Fragment() {
                 val db = TrackstoneDatabase.getInstance(activity)
                 var user = db?.userdao?.getUserById(userid)
                 if (user != null) {
-                    user.username = binding.profileNameChange.toString()
+                    user.username = binding.profileNameChange.text.toString()
                     db?.userdao?.update(user)
                 }
             }
             Toast.makeText(activity, "Username updated!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
         }
 
         binding.Change3.setOnClickListener {
@@ -68,11 +69,13 @@ class ProfileFragment : Fragment() {
                 val db = TrackstoneDatabase.getInstance(activity)
                 var user = db?.userdao?.getUserById(userid)
                 if (user != null) {
-                    user.mail = binding.profilePasswordChange.toString()
+                    user.password = binding.profilePasswordChange.text.toString()
                     db?.userdao?.update(user)
                 }
             }
             Toast.makeText(activity, "Password updated!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
         }
 
         binding.closeSessionButton.setOnClickListener {
@@ -91,8 +94,8 @@ class ProfileFragment : Fragment() {
             var edit = sharedPreferences?.edit()
             edit?.clear()
             edit?.commit()
-            val intent = Intent(activity, LoginActivity::class.java)
             Toast.makeText(activity, "User deleted!", Toast.LENGTH_SHORT).show()
+            val intent = Intent(activity, LoginActivity::class.java)
             startActivity(intent)
         }
 
