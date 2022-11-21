@@ -37,6 +37,27 @@ class DBContract private constructor() {
         const val CLASS_URL = "url"
     }
 
+    object DeckEntity: BaseColumns{
+        const val TABLE_NAME = "desk_table"
+        const val DESK_ID = "id"
+        const val NAME_ID = "name"
+        const val USER_ID = "userid"
+        const val CLASS_ID = "classid"
+        const val COUNT = "count"
+    }
+
+    object DeckListCards: BaseColumns{
+        const val TABLE_NAME = "desk_list"
+        const val DESK_ID = "deskid"
+        const val USER_ID = "userid"
+        const val COPIES = "copies"
+        const val CARD_NAME = "name"
+        const val CARD_RARITY = "rarity"
+        const val CARD_CLASS = "cardclass"
+        const val CARD_MANACOST = "manacost"
+        const val IMAGE = "image"
+    }
+
 
 
 
