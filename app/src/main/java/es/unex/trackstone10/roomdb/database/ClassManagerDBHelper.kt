@@ -23,6 +23,7 @@ class ClassManagerDBHelper (context: Context?) :
         private const val COMMA_SEP = ","
         private const val SQL_CREATE_CLASSES = "CREATE TABLE " + DBContract.ClassEntity.TABLE_NAME + " (" +
                 DBContract.ClassEntity.CLASS_ID + " INTEGER PRIMARY KEY," +
+                DBContract.ClassEntity.CLASS_NAME + TEXT_TYPE + COMMA_SEP +
                 DBContract.ClassEntity.HERO_ID + TEXT_TYPE + COMMA_SEP +
                 DBContract.ClassEntity.CLASS_URL + TEXT_TYPE + " )"
         private const val SQL_DELETE_CLASSES =

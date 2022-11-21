@@ -33,6 +33,7 @@ class DBContract private constructor() {
     object ClassEntity : BaseColumns{
         const val TABLE_NAME = "class_table"
         const val CLASS_ID = "id"
+        const val CLASS_NAME = "name"
         const val HERO_ID = "id_hero"
         const val CLASS_URL = "url"
     }

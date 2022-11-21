@@ -5,6 +5,8 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.databinding.ActivityHeroeSkinInfoBinding
+import es.unex.trackstone10.roomdb.Entity.ClassEntity
+import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
 class Heroe_skinInfoActivity : AppCompatActivity() {
 
@@ -18,5 +20,19 @@ class Heroe_skinInfoActivity : AppCompatActivity() {
         Glide.with(binding.heroeSkinDetails).load(cards.image).into(binding.heroeSkinDetails)
         binding.heroeSkinDetailsName.text = cards.name
         binding.textViewArtist.text = "Artist: ${cards.artistName}"
+
+
+        binding.addHeroeSkinFavorite.setOnClickListener{
+            AppExecutors.instance?.diskIO()?.execute{
+                val db = TrackstoneDatabase.getInstance(this)
+                db?.classDao?.insert(
+                    ClassEntity(
+                        cards.name,
+                        cards.classId,
+                        cards.image
+                    )
+                )
+            }
+        }
     }
 }

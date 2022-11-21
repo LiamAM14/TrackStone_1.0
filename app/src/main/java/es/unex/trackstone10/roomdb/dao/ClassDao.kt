@@ -12,6 +12,9 @@ interface ClassDao {
     @Query("SELECT * FROM class_table")
     fun getAll(): List<ClassEntity?>?
 
+    @Query("SELECT * FROM class_table WHERE name LIKE :nameQuery")
+    fun getByName(nameQuery: String): List<ClassEntity?>?
+
     @Insert
     fun insert(classE: ClassEntity?): Long
 

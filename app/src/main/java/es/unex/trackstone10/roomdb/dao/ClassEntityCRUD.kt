@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import android.net.http.SslCertificate.DName
 import android.util.Log
 import es.unex.trackstone10.roomdb.Entity.ClassEntity
 import es.unex.trackstone10.roomdb.database.ClassManagerDBHelper
@@ -20,6 +21,7 @@ class ClassEntityCRUD private constructor(context: Context){
         val db = mDbHelper?.readableDatabase
         val projection = arrayOf(
             DBContract.ClassEntity.CLASS_ID,
+            DBContract.ClassEntity.CLASS_NAME,
             DBContract.ClassEntity.HERO_ID,
             DBContract.ClassEntity.CLASS_URL
         )
@@ -55,6 +57,7 @@ class ClassEntityCRUD private constructor(context: Context){
 
         val values = ContentValues()
         values.put(DBContract.ClassEntity.CLASS_ID,classE.id)
+        values.put(DBContract.ClassEntity.CLASS_NAME,classE.name)
         values.put(DBContract.ClassEntity.HERO_ID,classE.idhero)
         values.put(DBContract.ClassEntity.CLASS_URL,classE.url)
 
@@ -83,9 +86,10 @@ class ClassEntityCRUD private constructor(context: Context){
         @SuppressLint("Range")
         fun getClassFromCursor(cursor: Cursor): ClassEntity{
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_ID))
-            val idhero = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.HERO_ID))
+            val name = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_NAME))
+            val idhero = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.HERO_ID))
             val url = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_URL))
-            val classE = ClassEntity(id,idhero,url)
+            val classE = ClassEntity(id,name,idhero,url)
             Log.d("ClassEntityCRUD", classE.toLog())
             return classE
         }

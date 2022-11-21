@@ -11,8 +11,10 @@ class HeroFavHolder (view: View): RecyclerView.ViewHolder(view){
 
     val binding = ItemCardBinding.bind(view)
 
-    fun render(cards: ClassEntity, onClickListener: (ClassEntity) -> Unit){
-//        binding.tvCard.text = cards.name
-        Glide.with(binding.ivCard.context).load(cards.url).into(binding.ivCard)
+    fun render(cards: ClassEntity?, onClickListener: (ClassEntity) -> Unit){
+        if(cards != null) {
+            binding.tvCard.text = cards.name
+            Glide.with(binding.ivCard.context).load(cards.url).into(binding.ivCard)
+        }
     }
 }

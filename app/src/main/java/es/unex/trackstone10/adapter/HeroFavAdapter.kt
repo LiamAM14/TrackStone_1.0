@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.R
 import es.unex.trackstone10.roomdb.Entity.ClassEntity
 
-class HeroFavAdapter(val favHeroList: List<ClassEntity>, private val onClickListener: (ClassEntity) -> Unit) : RecyclerView.Adapter<HeroFavHolder>() {
+class HeroFavAdapter(val favHeroList: List<ClassEntity?>, private val onClickListener: (ClassEntity) -> Unit) : RecyclerView.Adapter<HeroFavHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroFavHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return HeroFavHolder(layoutInflater.inflate(R.layout.item_card,parent,false))

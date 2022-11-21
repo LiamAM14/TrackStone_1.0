@@ -16,6 +16,13 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="33">
         <activity
+            android:name=".SelectCardDeck"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".CreateDeckActivity"
             android:exported="false">
             <meta-data

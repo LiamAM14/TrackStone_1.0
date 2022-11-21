@@ -17,7 +17,7 @@ class CardInfoActivity() : AppCompatActivity() {
         binding = ActivityCardInfoBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val cards = intent.getSerializableExtra("CARD_OBJ") as CardResponse
-        binding.cardDetailsName.text = cards.name
+        binding.cardtitle.text = cards.name
         binding.cardDetail1.text = cards.flavorText
         when (cards.rarityId){
             1 -> binding.cardDetail2.text = "Common"
