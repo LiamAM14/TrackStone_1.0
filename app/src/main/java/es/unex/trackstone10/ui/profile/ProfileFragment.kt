@@ -38,30 +38,43 @@ class ProfileFragment : Fragment() {
                 binding.textViewUsername.text = user?.username
             }
         }
-//        binding.Change1.setOnClickListener {
-//            user?.mail = binding.profileEmailChange.toString()
-//            AppExecutors.instance?.diskIO()?.execute {
-//                val db = TrackstoneDatabase.getInstance(activity)
-//                db?.userdao?.update(user)
-//                Toast.makeText(activity, "Email changed!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//        binding.Change1.setOnClickListener {
-//            user?.username = binding.profileNameChange.toString()
-//            AppExecutors.instance?.diskIO()?.execute {
-//                val db = TrackstoneDatabase.getInstance(activity)
-//                db?.userdao?.update(user)
-//                Toast.makeText(activity, "Username changed!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
-//        binding.Change1.setOnClickListener {
-//            user?.password = binding.profilePasswordChange.toString()
-//            AppExecutors.instance?.diskIO()?.execute {
-//                val db = TrackstoneDatabase.getInstance(activity)
-//                db?.userdao?.update(user)
-//                Toast.makeText(activity, "Password changed!", Toast.LENGTH_SHORT).show()
-//            }
-//        }
+
+        binding.Change1.setOnClickListener {
+            AppExecutors.instance?.diskIO()?.execute {
+                val db = TrackstoneDatabase.getInstance(activity)
+                var user = db?.userdao?.getUserById(userid)
+                if (user != null) {
+                    user.mail = binding.profileEmailChange.toString()
+                    db?.userdao?.update(user)
+                }
+            }
+            Toast.makeText(activity, "Email updated!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.Change2.setOnClickListener {
+            AppExecutors.instance?.diskIO()?.execute {
+                val db = TrackstoneDatabase.getInstance(activity)
+                var user = db?.userdao?.getUserById(userid)
+                if (user != null) {
+                    user.username = binding.profileNameChange.toString()
+                    db?.userdao?.update(user)
+                }
+            }
+            Toast.makeText(activity, "Username updated!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.Change3.setOnClickListener {
+            AppExecutors.instance?.diskIO()?.execute {
+                val db = TrackstoneDatabase.getInstance(activity)
+                var user = db?.userdao?.getUserById(userid)
+                if (user != null) {
+                    user.mail = binding.profilePasswordChange.toString()
+                    db?.userdao?.update(user)
+                }
+            }
+            Toast.makeText(activity, "Password updated!", Toast.LENGTH_SHORT).show()
+        }
+
         binding.closeSessionButton.setOnClickListener {
             var edit = sharedPreferences?.edit()
             edit?.clear()
