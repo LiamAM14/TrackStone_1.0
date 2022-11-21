@@ -21,6 +21,9 @@ class CardEntityCRUD private constructor(context: Context){
         val projection = arrayOf(
             DBContract.CardEntity.CARD_ID,
             DBContract.CardEntity.CARD_NAME,
+            DBContract.CardEntity.CARD_RARITY,
+            DBContract.CardEntity.CARD_CLASS,
+            DBContract.CardEntity.CARD_MANACOST,
             DBContract.CardEntity.CARD_INFO,
             DBContract.CardEntity.CARD_TYPE,
             DBContract.CardEntity.CARD_RACE
@@ -58,6 +61,9 @@ class CardEntityCRUD private constructor(context: Context){
         val values = ContentValues()
         values.put(DBContract.CardEntity.CARD_ID,card.id)
         values.put(DBContract.CardEntity.CARD_NAME,card.name)
+        values.put(DBContract.CardEntity.CARD_RARITY,card.rarity)
+        values.put(DBContract.CardEntity.CARD_CLASS,card.cardclass)
+        values.put(DBContract.CardEntity.CARD_MANACOST,card.manacost)
         values.put(DBContract.CardEntity.CARD_INFO,card.info)
         values.put(DBContract.CardEntity.CARD_TYPE,card.type)
         values.put(DBContract.CardEntity.CARD_RACE,card.race)
@@ -90,10 +96,13 @@ class CardEntityCRUD private constructor(context: Context){
         fun getCardFromCursor(cursor: Cursor): CardEntity{
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.CardEntity.CARD_ID))
             val name = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_NAME))
+            val rarity = cursor.getInt(cursor.getColumnIndex(DBContract.CardEntity.CARD_RARITY))
+            val cardclass = cursor.getInt(cursor.getColumnIndex(DBContract.CardEntity.CARD_CLASS))
+            val manacost = cursor.getInt(cursor.getColumnIndex(DBContract.CardEntity.CARD_MANACOST))
             val info = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_INFO))
             val type = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_TYPE))
             val race = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_RACE))
-            val card = CardEntity(id,name,info,type,race)
+            val card = CardEntity(id,name,rarity,cardclass,manacost,info,type,race)
             Log.d("CardEntityCRUD",card.toLog())
             return card
         }
