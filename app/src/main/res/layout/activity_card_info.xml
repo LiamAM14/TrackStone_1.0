@@ -17,11 +17,11 @@
         android:contentDescription="@string/card_description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardDetailsName"
+        app:layout_constraintTop_toBottomOf="@+id/createDeck"
         app:srcCompat="@drawable/hearthstone_logo" />
 
     <TextView
-        android:id="@+id/cardDetailsName"
+        android:id="@+id/createDeck"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"

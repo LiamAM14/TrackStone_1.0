@@ -16,8 +16,12 @@
     <string name="cardName">Card name</string>
     <string name="artistName">Artist name</string>
     <string name="deckName">Deck name</string>
+    <string name="createDeckName">Choose your deck name:</string>
+    <string name="deckClass">Select your class deck:</string>
+    <string name="typeHere">Type here…</string>
     <string name="craftCost">Craft cost</string>
     <string name="deleteUser">Delete user</string>
+    <string name="addCardsToDeck">Add Cards</string>
     <string name="logOut">Log out from Application</string>
     <string name="changeDataProfileButton">Change</string>
     <string name="card_description">Image of a card</string>
