@@ -6,9 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import es.unex.trackstone10.databinding.ActivityLoginBinding
-import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
-import es.unex.trackstone10.roomdb.dao.UserEntityCRUD
 
 class LoginActivity : AppCompatActivity() {
 

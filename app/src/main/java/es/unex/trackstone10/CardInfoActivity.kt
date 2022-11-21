@@ -83,12 +83,16 @@ class CardInfoActivity() : AppCompatActivity() {
                 db?.carddao?.insert(
                     CardEntity(
                         cards.name,
+                        cards.rarityId,
+                        cards.classId,
+                        cards.manaCost,
                         cards.image,
                         binding.cardDetail3.text.toString(),
                         race
                     )
                 )
                 val card = db?.carddao?.getAll()
+
             }
 
         }

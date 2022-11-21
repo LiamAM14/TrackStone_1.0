@@ -24,6 +24,9 @@ class CardManagerDBHelper (context: Context?) :
         private const val SQL_CREATE_CARDS = "CREATE TABLE " + DBContract.CardEntity.TABLE_NAME + " (" +
                 DBContract.CardEntity.CARD_ID + " INTEGER PRIMARY KEY," +
                 DBContract.CardEntity.CARD_NAME + TEXT_TYPE + COMMA_SEP +
+                DBContract.CardEntity.CARD_RARITY + TEXT_TYPE + COMMA_SEP +
+                DBContract.CardEntity.CARD_CLASS + TEXT_TYPE + COMMA_SEP +
+                DBContract.CardEntity.CARD_MANACOST + TEXT_TYPE + COMMA_SEP +
                 DBContract.CardEntity.CARD_INFO + TEXT_TYPE + COMMA_SEP +
                 DBContract.CardEntity.CARD_TYPE + TEXT_TYPE + COMMA_SEP +
                 DBContract.CardEntity.CARD_RACE + TEXT_TYPE + " )"
