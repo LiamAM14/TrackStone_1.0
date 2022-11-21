@@ -3,9 +3,8 @@ package es.unex.trackstone10.roomdb.database
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import kotlinx.coroutines.DEBUG_PROPERTY_NAME
 
-class DeckListCardDBHelper (context: Context?) :
+class DeckListCardManagerDBHelper (context: Context?) :
         SQLiteOpenHelper(context,DATABASE_NAME,null,DATABASE_VERSION){
     override fun onCreate(db: SQLiteDatabase?) {
         db?.execSQL(SQL_CREATE_DESK_LIST)
@@ -19,7 +18,7 @@ class DeckListCardDBHelper (context: Context?) :
 
     companion object{
         private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "desk_list.db"
+        private const val DATABASE_NAME = "deck_list.db"
         private const val TEXT_TYPE = " TEXT"
         private const val COMMA_SEP = ","
         private const val SQL_CREATE_DESK_LIST = "CREATE TABLE " + DBContract.DeckListCards.TABLE_NAME + " (" +

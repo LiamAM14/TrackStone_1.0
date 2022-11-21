@@ -12,6 +12,7 @@ class cardbackHolderFav(view: View) : RecyclerView.ViewHolder(view) {
 
     fun render(cardbacks: CardBackEntity?, onClickListener: (CardBackEntity) ->  Unit){
         if(cardbacks != null){
+            binding.tvCard.text = cardbacks.name
             Glide.with(binding.ivCard.context).load(cardbacks.url).into(binding.ivCard)
             itemView.setOnClickListener { onClickListener(cardbacks) }
         }

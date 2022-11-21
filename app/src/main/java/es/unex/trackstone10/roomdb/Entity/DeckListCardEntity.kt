@@ -89,7 +89,7 @@ class DeckListCardEntity {
         @Ignore
         const val DECK_ID:String = "id"
         @Ignore
-        const val USER_ID:String = "deskid"
+        const val USER_ID:String = "deckid"
         @Ignore
         const val CARD_NAME:String = "name"
         @Ignore
