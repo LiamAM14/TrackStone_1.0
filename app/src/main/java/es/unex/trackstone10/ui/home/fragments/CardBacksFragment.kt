@@ -142,13 +142,15 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
             searchByName(query)
-        }else{
-            getCardBacks()
         }
+
         return true
     }
 
+
     override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText?.length == 0){getCardBacks()}
+
         return true
     }
 
