@@ -38,8 +38,8 @@ class DBContract private constructor() {
     }
 
     object DeckEntity: BaseColumns{
-        const val TABLE_NAME = "desk_table"
-        const val DESK_ID = "id"
+        const val TABLE_NAME = "deck_table"
+        const val DECK_ID = "id"
         const val NAME_ID = "name"
         const val USER_ID = "userid"
         const val CLASS_ID = "classid"
@@ -47,11 +47,11 @@ class DBContract private constructor() {
     }
 
     object DeckListCards: BaseColumns{
-        const val TABLE_NAME = "desk_list"
-        const val DESK_ID = "deskid"
+        const val TABLE_NAME = "deck_list"
+        const val DECK_ID = "deckid"
         const val USER_ID = "userid"
-        const val COPIES = "copies"
         const val CARD_NAME = "name"
+        const val COPIES = "copies"
         const val CARD_RARITY = "rarity"
         const val CARD_CLASS = "cardclass"
         const val CARD_MANACOST = "manacost"
