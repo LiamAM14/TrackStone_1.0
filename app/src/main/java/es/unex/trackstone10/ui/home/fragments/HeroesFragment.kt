@@ -138,9 +138,11 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
             searchByName(query)
-        }else{
+        }
+        if(query?.length == 0) {
             getHeroes()
         }
+
         return true
     }
 

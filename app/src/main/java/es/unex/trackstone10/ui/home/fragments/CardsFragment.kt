@@ -139,9 +139,11 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     override fun onQueryTextSubmit(query: String?): Boolean {
         if (!query.isNullOrEmpty()) {
             searchByName(query)
-        }else{
+        }
+        if(query?.length == 0) {
             getCardsRecycler()
         }
+
         return true
     }
 
