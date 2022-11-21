@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -16,19 +17,25 @@ class RegisterActivity : AppCompatActivity() {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
+
         binding.registerButton.setOnClickListener {
             if (binding.editTextEmail.text.isNotEmpty() && binding.editTextTextPersonName.text.isNotEmpty()
                 && binding.editTextPassword.text.isNotEmpty() && binding.confirmPassword.text.toString() == binding.editTextPassword.text.toString()) {
                 AppExecutors.instance?.diskIO()?.execute {
                     val db = TrackstoneDatabase.getInstance(this)
-                    db?.userdao?.insert(
+                    var userid = db?.userdao?.insert(
                             UserEntity(
                             binding.editTextTextPersonName.text.toString(),
                             binding.editTextPassword.text.toString(),
                             binding.editTextEmail.text.toString()
                         )
                     )
-                    val user = db?.userdao?.getAll()
+                    var edit = sharedPreferences.edit()
+                    if (userid != null) {
+                        edit.putInt("userid", userid.toInt())
+                        edit.commit()
+                    }
                 }
                 val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
                 startActivity(intent)

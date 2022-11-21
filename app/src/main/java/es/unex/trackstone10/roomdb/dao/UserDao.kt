@@ -26,4 +26,7 @@ interface UserDao {
 
     @Query("SELECT * FROM user_table WHERE id = :userid")
     fun getUserById(userid:Int?): UserEntity
+
+    @Query("DELETE FROM user_table WHERE id = :userid")
+    fun deleteUser(userid:Int?): Int
 }
