@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import es.unex.trackstone10.roomdb.Entity.*
 import es.unex.trackstone10.roomdb.dao.*
 
-@Database(entities = [UserEntity::class,CardBackEntity::class,ClassEntity::class,CardEntity::class,DeskEntity::class], version = 10, exportSchema = false)
+@Database(entities = [UserEntity::class,CardBackEntity::class,ClassEntity::class,CardEntity::class,DeskEntity::class], version = 1, exportSchema = false)
 abstract class TrackstoneDatabase: RoomDatabase() {
 
     abstract val userdao: UserDao?

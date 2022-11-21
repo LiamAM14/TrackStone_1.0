@@ -58,7 +58,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun getCardsRecycler() {
         CoroutineScope(Dispatchers.IO).launch {
-            delay(3000)
+            delay(2000)
             //Se crea cliente http
             val client = OkHttpClient.Builder()
                 .addInterceptor(TokenInterceptor())

@@ -67,7 +67,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun getCardBacks(){
         CoroutineScope(Dispatchers.IO).launch {
-            delay(3000)
+            delay(2000)
             val client = OkHttpClient.Builder()
                 .addInterceptor(TokenInterceptor())
                 .build()

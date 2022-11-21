@@ -61,7 +61,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun getHeroes() {
         CoroutineScope(Dispatchers.IO).launch {
-            delay(1000)
+            delay(2000)
             val client = OkHttpClient.Builder()
                 .addInterceptor(TokenInterceptor())
                 .build()
