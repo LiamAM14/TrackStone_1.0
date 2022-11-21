@@ -13,6 +13,7 @@ class DBContract private constructor() {
 
     object CardBackEntity : BaseColumns{
         const val TABLE_NAME = "card_back_table"
+        const val CARDBACK_NAME = "name"
         const val CARDBACK_ID = "id"
         const val CARDBACK_URL = "url"
     }

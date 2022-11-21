@@ -20,6 +20,7 @@ class CardBackEntityCRUD private constructor(context: Context){
         val db = mDbHelper?.readableDatabase
         val projection = arrayOf(
             DBContract.CardBackEntity.CARDBACK_ID,
+            DBContract.CardBackEntity.CARDBACK_NAME,
             DBContract.CardBackEntity.CARDBACK_URL
         )
 
@@ -54,6 +55,7 @@ class CardBackEntityCRUD private constructor(context: Context){
 
         val values = ContentValues()
         values.put(DBContract.CardBackEntity.CARDBACK_ID,cardback.id)
+        values.put(DBContract.CardBackEntity.CARDBACK_NAME,cardback.name)
         values.put(DBContract.CardBackEntity.CARDBACK_URL,cardback.url)
 
         return db?.insert(DBContract.CardBackEntity.TABLE_NAME,null,values) ?: -1
@@ -81,8 +83,9 @@ class CardBackEntityCRUD private constructor(context: Context){
         @SuppressLint("Range")
         fun getCardBackFromCursor(cursor: Cursor): CardBackEntity{
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_ID))
+            val name = cursor.getString(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_NAME))
             val url = cursor.getString(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_URL))
-            val cardback = CardBackEntity(id,url)
+            val cardback = CardBackEntity(id,name,url)
             Log.d("CardBackEntityCRUD",cardback.toLog())
             return cardback
         }
