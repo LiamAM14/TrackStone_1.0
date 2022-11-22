@@ -23,4 +23,7 @@ interface ClassDao {
 
     @Update
     fun update(classE: ClassEntity?): Int
+
+    @Query("DELETE FROM class_table WHERE id = :idClass")
+    fun deleteFromId(idClass: Int)
 }

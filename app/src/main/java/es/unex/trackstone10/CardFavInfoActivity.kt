@@ -7,9 +7,8 @@ import com.bumptech.glide.Glide
 import es.unex.trackstone10.databinding.ActivityCardInfoBinding
 import es.unex.trackstone10.roomdb.Entity.CardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
-import es.unex.trackstone10.ui.favorites.FavoritesFragment
 
-class CardFavInfoActivity  : AppCompatActivity()  {
+class CardFavInfoActivity : AppCompatActivity()  {
 
     private lateinit var binding: ActivityCardInfoBinding
 

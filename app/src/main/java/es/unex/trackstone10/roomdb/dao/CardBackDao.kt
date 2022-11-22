@@ -24,4 +24,7 @@ interface CardBackDao {
 
     @Update
     fun update(cardback: CardBackEntity?): Int
+
+    @Query("DELETE FROM card_back_table WHERE id = :idCardBack")
+    fun deleteFromId(idCardBack: Int)
 }

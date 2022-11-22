@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.unex.trackstone10.HeroFavInfoActivity
 import es.unex.trackstone10.HeroInfoActivity
 import es.unex.trackstone10.adapter.HeroFavAdapter
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
@@ -45,7 +46,7 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(heroes: ClassEntity){
-        val intent: Intent = Intent(activity, HeroInfoActivity::class.java)
+        val intent: Intent = Intent(activity, HeroFavInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", heroes)
         startActivity(intent)
     }

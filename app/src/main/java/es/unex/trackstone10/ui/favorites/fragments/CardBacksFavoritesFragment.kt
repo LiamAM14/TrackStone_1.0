@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import es.unex.trackstone10.CardBackFavInfoActivity
 import es.unex.trackstone10.CardBackInfoActivity
 import es.unex.trackstone10.adapter.cardbackAdapterFav
 import es.unex.trackstone10.databinding.FragmentCardBacksBinding
@@ -46,7 +47,7 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cardbacks: CardBackEntity) {
-        val intent: Intent = Intent(activity, CardBackInfoActivity::class.java)
+        val intent: Intent = Intent(activity, CardBackFavInfoActivity::class.java)
         intent.putExtra("CARD_BACK_OBJ", cardbacks)
         startActivity(intent)
     }
