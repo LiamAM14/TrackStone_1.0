@@ -30,4 +30,19 @@ object APIToken {
             token = call.body()
         }
     }
+
+    fun getRetrofit(url: String): Retrofit{
+        val url = "https://us.api.blizzard.com$url"
+        val client = OkHttpClient.Builder()
+            .addInterceptor(TokenInterceptor())
+            .build()
+
+        val retrofit = Retrofit.Builder()
+            .baseUrl(url)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+
+        return retrofit
+    }
 }

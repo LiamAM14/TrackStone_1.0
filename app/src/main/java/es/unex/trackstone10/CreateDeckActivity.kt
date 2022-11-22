@@ -81,6 +81,7 @@ class CreateDeckActivity : AppCompatActivity() {
             }
             val intent = Intent(this, SelectCardDeck::class.java)
             intent.putExtra("USER_ID", userid)
+            intent.putExtra("CLASS_SLUG", binding.editTextTextPersonName.text.toString().lowercase())
             startActivity(intent)
         }
     }

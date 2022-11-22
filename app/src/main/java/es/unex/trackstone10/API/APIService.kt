@@ -17,6 +17,7 @@ interface APIService {
     suspend fun getCards(
         @Query("set") set: String,
         @Query("sort") byClass: String,
+        @Query("pageSize") size: Int,
         @Query("locale") locale: String
     ): Response<CardResponseList>
 
@@ -26,6 +27,7 @@ interface APIService {
         @Query("textFilter") name: String,
         @Query("set") set: String,
         @Query("sort") byClass: String,
+        @Query("pageSize") size: Int,
         @Query("locale") locale: String
     ): Response<CardResponseList>
 
@@ -34,6 +36,7 @@ interface APIService {
         @Query("class") HSclass: String,
         @Query("set") set: String,
         @Query("sort") byMana: String,
+        @Query("pageSize") size: Int,
         @Query("locale") locale: String
     ): Response<CardResponseList>
 

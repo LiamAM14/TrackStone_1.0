@@ -72,7 +72,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
             //Se lleva a cabo la llamada GET a la API
             val call = retrofit.create(APIService::class.java)
-                .getCards("standard", "groupByClass:asc,manaCost:asc", "en_US")
+                .getCards("standard", "groupByClass:asc,manaCost:asc", 1300, "en_US")
 
             val cards = call.body()
             handler.post {
@@ -107,7 +107,8 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
             //Se lleva a cabo la llamada GET a la API
             val call =
-                retrofit.create(APIService::class.java).getCardsByName(query, "standard","groupByClass:asc,manaCost:asc", "en_US")
+                retrofit.create(APIService::class.java)
+                    .getCardsByName(query, "standard", "groupByClass:asc,manaCost:asc",1300, "en_US")
 
             val cards = call.body()
             handler.post {
@@ -144,7 +145,7 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText?.length == 0) {
+        if (newText?.length == 0) {
             getCardsRecycler()
         }
 
