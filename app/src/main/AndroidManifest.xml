@@ -85,7 +85,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Heroe_skinInfoActivity"
+            android:name=".HeroInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -99,7 +99,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".Card_backInfoActivity"
+            android:name=".CardBackInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -7,19 +7,12 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.room.Query
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.Heroe_skinInfoActivity
-import es.unex.trackstone10.R
+import es.unex.trackstone10.HeroInfoActivity
 import es.unex.trackstone10.adapter.HeroFavAdapter
-import es.unex.trackstone10.adapter.cardAdapterFav
-import es.unex.trackstone10.databinding.FragmentCardsBinding
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
-import es.unex.trackstone10.roomdb.Entity.CardEntity
 import es.unex.trackstone10.roomdb.Entity.ClassEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 import kotlinx.coroutines.CoroutineScope
@@ -52,7 +45,7 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(heroes: ClassEntity){
-        val intent: Intent = Intent(activity, Heroe_skinInfoActivity::class.java)
+        val intent: Intent = Intent(activity, HeroInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", heroes)
         startActivity(intent)
     }

@@ -14,8 +14,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.*
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.Heroe_skinInfoActivity
+import es.unex.trackstone10.HeroInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
 import kotlinx.coroutines.CoroutineScope
@@ -53,7 +52,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cards: CardResponse) {
-        val intent: Intent = Intent(activity, Heroe_skinInfoActivity::class.java)
+        val intent: Intent = Intent(activity, HeroInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }

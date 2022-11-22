@@ -1,6 +1,5 @@
 package es.unex.trackstone10
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -9,13 +8,11 @@ import es.unex.trackstone10.databinding.ActivityCardInfoBinding
 import es.unex.trackstone10.roomdb.Entity.CardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 import es.unex.trackstone10.ui.favorites.FavoritesFragment
-import es.unex.trackstone10.ui.favorites.fragments.CardBacksFavoritesFragment
 
 class CardFavInfoActivity  : AppCompatActivity()  {
 
     private lateinit var binding: ActivityCardInfoBinding
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCardInfoBinding.inflate(layoutInflater)
@@ -56,5 +53,6 @@ class CardFavInfoActivity  : AppCompatActivity()  {
             val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
             startActivity(intent)
         }
+
     }
 }

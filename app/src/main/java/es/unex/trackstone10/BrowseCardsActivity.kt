@@ -30,7 +30,7 @@ class BrowseCardsActivity : AppCompatActivity(), SearchView.OnQueryTextListener 
 //
 //    private fun onItemSelected(cards: CardResponse) {
 //        if (cards.cardTypeId == 3 && cards.cardSetId == 17) {
-//            intent = Intent(this, Heroe_skinInfoActivity::class.java)
+//            intent = Intent(this, HeroInfoActivity::class.java)
 //        } else {
 //            intent = Intent(this, CardInfoActivity::class.java)
 //        }

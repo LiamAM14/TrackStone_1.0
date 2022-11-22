@@ -2,18 +2,8 @@ package es.unex.trackstone10
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Base64
 import android.widget.Button
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import es.unex.trackstone10.API.APIService
-import es.unex.trackstone10.API.Token
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainMenuActivity : AppCompatActivity() {
@@ -46,12 +36,12 @@ class MainMenuActivity : AppCompatActivity() {
         }
 
         bHero.setOnClickListener() { view ->
-            intent = Intent(this, Heroe_skinInfoActivity::class.java)
+            intent = Intent(this, HeroInfoActivity::class.java)
             startActivity(intent)
         }
 
         bCardback.setOnClickListener() { view ->
-            intent = Intent(this, Card_backInfoActivity::class.java)
+            intent = Intent(this, CardBackInfoActivity::class.java)
             startActivity(intent)
         }
     }

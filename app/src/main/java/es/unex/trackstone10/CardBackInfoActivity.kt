@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -9,11 +10,8 @@ import es.unex.trackstone10.API.CardBackResponse
 import es.unex.trackstone10.databinding.ActivityCardBackInfoBinding
 import es.unex.trackstone10.roomdb.Entity.CardBackEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
-class Card_backInfoActivity : AppCompatActivity() {
+class CardBackInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCardBackInfoBinding
     private val handler = Handler(Looper.getMainLooper())
@@ -38,6 +36,8 @@ class Card_backInfoActivity : AppCompatActivity() {
                 )
 
             }
+            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
         }
 
     }

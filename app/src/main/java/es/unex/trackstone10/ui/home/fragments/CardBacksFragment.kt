@@ -11,19 +11,15 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.APIService
 import es.unex.trackstone10.API.APIToken
 import es.unex.trackstone10.API.CardBackResponse
 import es.unex.trackstone10.API.TokenInterceptor
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.Card_backInfoActivity
-import es.unex.trackstone10.R
+import es.unex.trackstone10.CardBackInfoActivity
 import es.unex.trackstone10.adapter.cardbackAdapter
 import es.unex.trackstone10.databinding.FragmentCardBacksBinding
-import es.unex.trackstone10.databinding.FragmentCardsBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -59,7 +55,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cardbacks: CardBackResponse){
-        val intent: Intent = Intent(activity,Card_backInfoActivity::class.java)
+        val intent: Intent = Intent(activity,CardBackInfoActivity::class.java)
         intent.putExtra("CARD_BACK_OBJ",cardbacks)
         startActivity(intent)
 

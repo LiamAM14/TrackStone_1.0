@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -91,7 +92,8 @@ class CardInfoActivity() : AppCompatActivity() {
                         race
                     )
                 )
-                val card = db?.carddao?.getAll()
+                val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
+                startActivity(intent)
 
             }
 
