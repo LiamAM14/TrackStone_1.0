@@ -5,22 +5,18 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Adapter
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
 import android.widget.Spinner
-import es.unex.trackstone10.databinding.ActivityCardInfoBinding
 import es.unex.trackstone10.databinding.ActivityCreateDeckBinding
-import es.unex.trackstone10.roomdb.Entity.CardEntity
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
-import java.util.*
 
 class CreateDeckActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCreateDeckBinding
     lateinit var option: Spinner
+    private lateinit var textClass:String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,7 +40,7 @@ class CreateDeckActivity : AppCompatActivity() {
             "Warrior"
         )
         option = findViewById(R.id.mySpinner)
-        var textNameClass: String
+        var textNameClass:String
         var num: Int = 0
 
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
@@ -59,11 +55,11 @@ class CreateDeckActivity : AppCompatActivity() {
                 id: Long
             ) {
                 textNameClass = option.selectedItem.toString()
+                textClass = textNameClass
                 num = stringToInt(textNameClass)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
         }
 
@@ -79,9 +75,9 @@ class CreateDeckActivity : AppCompatActivity() {
                     )
                 )
             }
-            val intent = Intent(this, SelectCardDeck::class.java)
+            val intent = Intent(this, SelectCardDeckActivity::class.java)
             intent.putExtra("USER_ID", userid)
-            intent.putExtra("CLASS_SLUG", binding.editTextTextPersonName.text.toString().lowercase())
+            intent.putExtra("CLASS_SLUG", textClass.lowercase())
             startActivity(intent)
         }
     }

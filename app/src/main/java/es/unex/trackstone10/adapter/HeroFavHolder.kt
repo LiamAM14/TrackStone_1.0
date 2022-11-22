@@ -15,6 +15,7 @@ class HeroFavHolder (view: View): RecyclerView.ViewHolder(view){
         if(cards != null) {
             binding.tvCard.text = cards.name
             Glide.with(binding.ivCard.context).load(cards.url).into(binding.ivCard)
+            itemView.setOnClickListener{ onClickListener(cards)}
         }
     }
 }
