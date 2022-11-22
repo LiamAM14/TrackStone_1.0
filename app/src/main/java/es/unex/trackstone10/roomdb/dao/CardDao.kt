@@ -23,4 +23,8 @@ interface CardDao {
 
     @Update
     fun update(card : CardEntity?): Int
+
+    @Query("DELETE FROM card_table WHERE name LIKE :nameQuery")
+    fun deleteByName(nameQuery: String?)
+
 }

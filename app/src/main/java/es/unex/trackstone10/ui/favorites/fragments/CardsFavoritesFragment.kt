@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.APIToken
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.CardFavInfoActivity
 import es.unex.trackstone10.CardInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.adapter.cardAdapterFav
@@ -49,7 +50,7 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cards: CardEntity) {
-        val intent: Intent = Intent(activity, CardInfoActivity::class.java)
+        val intent: Intent = Intent(activity, CardFavInfoActivity::class.java)
         intent.putExtra("CARD_OBJ", cards)
         startActivity(intent)
     }
