@@ -18,6 +18,16 @@ interface DeckListDao {
     @Query("DELETE FROM deck_list")
     fun deleteAll()
 
+    @Query("SELECT copies FROM deck_list WHERE deck_id = :deckID AND card_name LIKE :cardName")
+    fun checkCopies(deckID: Int, cardName: String): Int
+
+
+    @Query("SELECT * FROM deck_list WHERE deck_id = :deckID AND card_name LIKE :cardName")
+    fun checkCard(deckID: Int, cardName: String): List<DeckListCardEntity>?
+
+    @Query("UPDATE deck_list SET copies = copies+1 WHERE deck_id = :deckID AND card_name LIKE :cardName")
+    fun incCopies(deckID: Int, cardName: String)
+
     @Update
     fun update(deckList : DeckListCardEntity?): Int
 }
