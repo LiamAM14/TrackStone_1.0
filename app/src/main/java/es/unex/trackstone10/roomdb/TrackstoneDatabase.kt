@@ -15,7 +15,7 @@ abstract class TrackstoneDatabase: RoomDatabase() {
     abstract val carddao: CardDao?
     abstract val cardbackdao: CardBackDao?
     abstract val classDao: ClassDao?
-    abstract val deskDao: DeckDao?
+    abstract val deckDao: DeckDao?
     abstract val deckListDao: DeckListDao?
 
 

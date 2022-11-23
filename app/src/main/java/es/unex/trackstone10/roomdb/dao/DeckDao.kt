@@ -14,6 +14,9 @@ interface DeckDao {
     @Query("SELECT * FROM deck_table WHERE name = :name")
     fun getEntity(name: String): DeckEntity?
 
+    @Query("SELECT count FROM deck_table WHERE id = :idDeck")
+    fun getCountCards(idDeck:Int?): Int?
+
     @Query("SELECT * FROM deck_table WHERE user_id = :id")
     fun getAllFromUser(id: String): List<DeckEntity?>?
 

@@ -1,20 +1,22 @@
 package es.unex.trackstone10.adapter
 
+import android.content.Intent
 import android.view.View
-import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.bumptech.glide.Glide
-import es.unex.trackstone10.AppExecutors
-import es.unex.trackstone10.Deck
+import androidx.core.content.ContextCompat.startActivity
+import androidx.fragment.app.FragmentActivity
+import androidx.recyclerview.widget.RecyclerView
+import es.unex.trackstone10.CardFavInfoActivity
+import es.unex.trackstone10.EditDeckActivity
 import es.unex.trackstone10.R
 import es.unex.trackstone10.databinding.ItemDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
-import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
-class deckHolder(view: View): ViewHolder(view) {
+
+class deckHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val binding = ItemDeckBinding.bind(view)
 
-   fun render(deck: DeckEntity? ) {
+   fun render(deck: DeckEntity?, context: FragmentActivity?) {
        if (deck != null) {
            binding.deckName.text = deck.name
            when (deck.classid) {
@@ -29,7 +31,13 @@ class deckHolder(view: View): ViewHolder(view) {
                9 -> binding.imageViewClassDeck.setImageResource(R.drawable.shaman)
                10 -> binding.imageViewClassDeck.setImageResource(R.drawable.warlock)
                11 -> binding.imageViewClassDeck.setImageResource(R.drawable.warrior)
+
            }
+       }
+       binding.editDeckButton.setOnClickListener{
+           val intent:Intent = Intent(context, EditDeckActivity::class.java)
+           intent.putExtra("CARD_OBJ",deck?.id)
+           context?.startActivity(intent)
        }
    }
 

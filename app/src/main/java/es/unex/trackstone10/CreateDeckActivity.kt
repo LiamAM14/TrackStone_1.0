@@ -67,7 +67,7 @@ class CreateDeckActivity : AppCompatActivity() {
         binding.addCardButton.setOnClickListener {
             AppExecutors.instance?.diskIO()?.execute {
                 val db = TrackstoneDatabase.getInstance(this)
-                db?.deskDao?.insert(
+                db?.deckDao?.insert(
                     DeckEntity(
                         num,
                         binding.editTextTextPersonName.text.toString(),
@@ -76,7 +76,7 @@ class CreateDeckActivity : AppCompatActivity() {
 
                     )
                 )
-                var deck = db?.deskDao?.getEntity(binding.editTextTextPersonName.text.toString())
+                var deck = db?.deckDao?.getEntity(binding.editTextTextPersonName.text.toString())
                 if(deck?.id != null) {
                     deckId = deck.id
                 }
