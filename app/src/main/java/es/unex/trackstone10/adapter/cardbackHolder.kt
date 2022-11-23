@@ -13,6 +13,7 @@ class cardbackHolder(view: View) : ViewHolder(view){
     fun render(cardbacks: CardBackResponse, onClickListener: (CardBackResponse) -> Unit){
         binding.tvCard.text = cardbacks.name
 
+        binding.tvCard2.text = ""
         Glide.with(binding.ivCard.context).load(cardbacks.image).into(binding.ivCard)
         itemView.setOnClickListener{ onClickListener(cardbacks) }
     }

@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +15,6 @@ import es.unex.trackstone10.roomdb.TrackstoneDatabase
 class CardBackInfoActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityCardBackInfoBinding
-    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +25,17 @@ class CardBackInfoActivity : AppCompatActivity() {
         binding.cardBackDetail1.text = cardBacks.text
         Glide.with(binding.cardBackDetails.context).load(cardBacks.image).into(binding.cardBackDetails)
 
+        val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
+        var userId = sharedPreferences.getInt("userid", 0)
+
         binding.addCardBackFavorite.setOnClickListener {
             AppExecutors.instance?.diskIO()?.execute {
                 val db = TrackstoneDatabase.getInstance(this)
                 db?.cardbackdao?.insert(
                     CardBackEntity(
                         cardBacks.name,
-                        cardBacks.image
+                        cardBacks.image,
+                        userId
                     )
                 )
 

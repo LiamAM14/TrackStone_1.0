@@ -10,11 +10,11 @@ import es.unex.trackstone10.roomdb.Entity.CardEntity
 @Dao
 interface CardBackDao {
 
-    @Query("SELECT * FROM card_back_table")
-    fun getAll(): List<CardBackEntity?>?
+    @Query("SELECT * FROM card_back_table WHERE userid = :userid")
+    fun getAllById(userid : Int?): List<CardBackEntity?>?
 
-    @Query("SELECT * FROM card_back_table WHERE name LIKE :nameQuery")
-    fun getByName(nameQuery: String): List<CardBackEntity?>?
+    @Query("SELECT * FROM card_back_table WHERE name LIKE :nameQuery AND userid = :userid")
+    fun getByNameAndId(nameQuery: String,userid : Int?): List<CardBackEntity?>?
 
     @Insert
     fun insert(cardback : CardBackEntity?): Long

@@ -8,16 +8,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.inflate
 import android.view.ViewGroup
-import es.unex.trackstone10.CreateDeckActivity
-import es.unex.trackstone10.Deck
-import es.unex.trackstone10.R
-import es.unex.trackstone10.RegisterActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import es.unex.trackstone10.*
+import es.unex.trackstone10.adapter.HeroFavAdapter
+import es.unex.trackstone10.adapter.deckAdapter
 import es.unex.trackstone10.databinding.FragmentDecksBinding
+import es.unex.trackstone10.roomdb.Entity.DeckEntity
+import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
 
 class DecksFragment : Fragment() {
 
     private lateinit var binding: FragmentDecksBinding
+    private lateinit var adapter: deckAdapter
+    private val deckList = (mutableListOf<DeckEntity?>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +38,9 @@ class DecksFragment : Fragment() {
     }
 
     private fun initRecyclerView(){
+        adapter = deckAdapter(deckList)
+        binding.recyclerViewDecks.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewDecks.adapter = adapter
     }
 
 

@@ -17,20 +17,24 @@ class ClassEntity : Serializable {
     var idhero: Int? = 0
     @ColumnInfo(name = "url")
     var url: String? = String()
+    @ColumnInfo(name = "userid")
+    var userid: Int? = 0
 
     @Ignore
-    internal constructor(name: String?,idhero: Int?,url: String?){
+    internal constructor(name: String?,idhero: Int?,url: String?,userid: Int?){
         this.name = name
         this.idhero = idhero
         this.url = url
+        this.userid = userid
     }
 
 
-    constructor(id: Int, name: String?,idhero: Int?, url: String){
+    constructor(id: Int, name: String?,idhero: Int?, url: String,userid: Int?){
         this.name = name
         this.id = id
         this.idhero = idhero
         this.url = url
+        this.userid = userid
     }
 
     @Ignore
@@ -39,15 +43,16 @@ class ClassEntity : Serializable {
         name = intent.getStringExtra(CLASS_NAME).toString()
         idhero = intent.getIntExtra(CLASS_ID_HERO,0)
         url = intent.getStringExtra(CLASS_URL).toString()
+        userid = intent.getIntExtra(USER_ID,0)
     }
 
     override fun toString(): String {
-        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + idhero + ITEM_SEPARATOR + url)
+        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + idhero.toString() + ITEM_SEPARATOR + url + ITEM_SEPARATOR + userid.toString())
     }
 
     fun toLog(): String{
-        return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "ID_HERO: " + idhero + ITEM_SEPARATOR
-                + "Url: " + url)
+        return ("Id: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "Hero_id: " + idhero + ITEM_SEPARATOR
+                + "Url: " + url + "User_id: " + userid)
     }
 
     companion object{
@@ -60,12 +65,15 @@ class ClassEntity : Serializable {
         @Ignore
         const val CLASS_URL:String = "url"
         @Ignore
+        const val USER_ID:String = "userid"
+        @Ignore
         val ITEM_SEPARATOR:String = System.getProperty("line.separator") as String
 
-        fun packageIntent(intent: Intent,name: String?,idhero: Int?,url: String?){
+        fun packageIntent(intent: Intent,name: String?,idhero: Int?,url: String?,userid: Int?){
             intent.putExtra(CLASS_ID_HERO,idhero)
             intent.putExtra(CLASS_NAME,name)
             intent.putExtra(CLASS_URL,url)
+            intent.putExtra(USER_ID,userid)
         }
     }
 }

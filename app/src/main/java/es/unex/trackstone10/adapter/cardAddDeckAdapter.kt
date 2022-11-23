@@ -2,11 +2,12 @@ package es.unex.trackstone10.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.R
 
-class cardAddDeckAdapter(val cardsList: List<CardResponse>) : RecyclerView.Adapter<cardAddDeckHolder>() {
+class cardAddDeckAdapter(val cardsList: List<CardResponse>,var id:Int?, var user:Int?,var conText: FragmentActivity?) : RecyclerView.Adapter<cardAddDeckHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cardAddDeckHolder {
@@ -16,7 +17,7 @@ class cardAddDeckAdapter(val cardsList: List<CardResponse>) : RecyclerView.Adapt
 
     override fun onBindViewHolder(holder: cardAddDeckHolder, position: Int) {
         val item = cardsList[position]
-        holder.render(item)
+        holder.render(item,id,user, conText)
     }
 
     override fun getItemCount(): Int = cardsList.size

@@ -17,6 +17,7 @@ class CreateDeckActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCreateDeckBinding
     lateinit var option: Spinner
     private lateinit var textClass:String
+    var deckId:Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,11 +25,11 @@ class CreateDeckActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
-        var userid = sharedPreferences.getInt("userid", 0)
+        var userId = sharedPreferences.getInt("userid", 0)
 
         val lista = listOf(
-            "Death Knight",
-            "Demon hunter",
+            "DeathKnight",
+            "DemonHunter",
             "Druid",
             "Hunter",
             "Mage",
@@ -40,7 +41,6 @@ class CreateDeckActivity : AppCompatActivity() {
             "Warrior"
         )
         option = findViewById(R.id.mySpinner)
-        var textNameClass:String
         var num: Int = 0
 
         val adaptador = ArrayAdapter(this, android.R.layout.simple_spinner_item, lista)
@@ -54,9 +54,8 @@ class CreateDeckActivity : AppCompatActivity() {
                 position: Int,
                 id: Long
             ) {
-                textNameClass = option.selectedItem.toString()
-                textClass = textNameClass
-                num = stringToInt(textNameClass)
+                textClass = option.selectedItem.toString()
+                num = stringToInt(textClass)
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -71,12 +70,18 @@ class CreateDeckActivity : AppCompatActivity() {
                         num,
                         binding.editTextTextPersonName.text.toString(),
                         0,
-                        userid
+                        userId,
+
                     )
                 )
+                var deck = db?.deskDao?.getEntity(binding.editTextTextPersonName.text.toString())
+                if(deck?.id != null) {
+                    deckId = deck.id
+                }
             }
             val intent = Intent(this, SelectCardDeckActivity::class.java)
-            intent.putExtra("USER_ID", userid)
+            intent.putExtra("USER_ID", userId)
+            intent.putExtra("DECK_ID", deckId)
             intent.putExtra("CLASS_SLUG", textClass.lowercase())
             startActivity(intent)
         }
@@ -85,8 +90,8 @@ class CreateDeckActivity : AppCompatActivity() {
     fun stringToInt(className: String): Int {
         var num: Int = 0
         when (className) {
-            "Death Knight" -> num = 1
-            "Demon hunter" -> num = 2
+            "DeathKnight" -> num = 1
+            "DemonHunter" -> num = 2
             "Druid" -> num = 3
             "Hunter" -> num = 4
             "Mage" -> num = 5

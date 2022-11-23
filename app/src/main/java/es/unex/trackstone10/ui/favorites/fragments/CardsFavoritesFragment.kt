@@ -1,5 +1,6 @@
 package es.unex.trackstone10.ui.favorites.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -10,12 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.API.APIToken
-import es.unex.trackstone10.API.CardResponse
-import es.unex.trackstone10.AppExecutors
 import es.unex.trackstone10.CardFavInfoActivity
-import es.unex.trackstone10.CardInfoActivity
-import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.adapter.cardAdapterFav
 import es.unex.trackstone10.databinding.FragmentCardsBinding
 import es.unex.trackstone10.roomdb.Entity.CardEntity
@@ -31,6 +27,8 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val handler = Handler(Looper.getMainLooper())
     private var cardList = (mutableListOf<CardEntity?>())
 
+    var userId:Int? = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,6 +38,8 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
         getCardsRecycler()
+        val sharedPreferences = activity?.getSharedPreferences("userid", Context.MODE_PRIVATE)
+        userId = sharedPreferences?.getInt("userid", 0)
         return view
     }
 
@@ -58,7 +58,7 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getCardsRecycler() {
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
-            val card = db?.carddao?.getAll()
+            val card = db?.carddao?.getAllById(userId)
             handler.post {
                 if (card != null) {
                     cardList.clear()
@@ -73,7 +73,7 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
             val query2 = "%$query%"
-            val card = db?.carddao?.getByName(query2)
+            val card = db?.carddao?.getByNameAndId(query2,userId)
             handler.post {
                 if (card != null) {
                     cardList.clear()
@@ -92,6 +92,9 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText?.length == 0){
+            getCardsRecycler()
+        }
         return true
     }
 }

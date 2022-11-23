@@ -24,7 +24,8 @@ class CardBackManagerDBHelper(context: Context?) :
             "CREATE TABLE " + DBContract.CardBackEntity.TABLE_NAME + " (" +
                     DBContract.CardBackEntity.CARDBACK_ID + " INTEGER PRIMARY KEY," +
                     DBContract.CardBackEntity.CARDBACK_NAME + TEXT_TYPE + COMMA_SEP +
-                    DBContract.CardBackEntity.CARDBACK_URL + TEXT_TYPE + " )"
+                    DBContract.CardBackEntity.CARDBACK_URL + TEXT_TYPE + COMMA_SEP +
+                    DBContract.CardBackEntity.USER_ID + TEXT_TYPE + " )"
         private const val SQL_DETELE_CARDBACKS =
             "DROP TABLE IF EXISTS " + DBContract.CardBackEntity.TABLE_NAME
     }

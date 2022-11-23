@@ -1,5 +1,6 @@
 package es.unex.trackstone10.ui.favorites.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.CardBackFavInfoActivity
-import es.unex.trackstone10.CardBackInfoActivity
 import es.unex.trackstone10.adapter.cardbackAdapterFav
 import es.unex.trackstone10.databinding.FragmentCardBacksBinding
 import es.unex.trackstone10.roomdb.Entity.CardBackEntity
@@ -27,6 +27,8 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val handler = Handler(Looper.getMainLooper())
     private var cardBackList = (mutableListOf<CardBackEntity?>())
 
+    var userId:Int? = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,7 +38,8 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
         getCardBackFav()
-
+        val sharedPreferences = activity?.getSharedPreferences("userid", Context.MODE_PRIVATE)
+        userId = sharedPreferences?.getInt("userid", 0)
         return view
     }
 
@@ -55,7 +58,7 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getCardBackFav(){
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
-            val cardback = db?.cardbackdao?.getAll()
+            val cardback = db?.cardbackdao?.getAllById(userId)
             handler.post{
                 if(cardback != null){
                     cardBackList.clear()
@@ -70,7 +73,7 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
             val query2 = "%$query%"
-            val cardback = db?.cardbackdao?.getByName(query2)
+            val cardback = db?.cardbackdao?.getByNameAndId(query2,userId)
             handler.post{
                 if(cardback != null){
                     cardBackList.clear()
@@ -89,7 +92,8 @@ class CardBacksFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText:String?): Boolean{
-        if(newText?.length == 0){getCardBackFav()}
+        if(newText?.length == 0){
+            getCardBackFav()}
         return true
     }
 }

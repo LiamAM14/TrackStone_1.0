@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -37,6 +38,8 @@ class CardInfoActivity() : AppCompatActivity() {
         binding.cardDetail4.text = "Artist: ${cards.artistName}"
         Glide.with(binding.cardDetails.context).load(cards.image).into(binding.cardDetails)
 
+        val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
+        var userId = sharedPreferences.getInt("userid", 0)
 
         binding.addDeleteFavoriteButton.setOnClickListener{
             AppExecutors.instance?.diskIO()?.execute{
@@ -89,7 +92,8 @@ class CardInfoActivity() : AppCompatActivity() {
                         cards.manaCost,
                         cards.image,
                         binding.cardDetail3.text.toString(),
-                        race
+                        race,
+                        userId
                     )
                 )
                 val intent = Intent(this, ButtonNavigationMenuActivity::class.java)

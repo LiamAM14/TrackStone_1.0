@@ -9,11 +9,11 @@ import es.unex.trackstone10.roomdb.Entity.ClassEntity
 @Dao
 interface ClassDao {
 
-    @Query("SELECT * FROM class_table")
-    fun getAll(): List<ClassEntity?>?
+    @Query("SELECT * FROM class_table WHERE userid = :userid")
+    fun getAllById(userid: Int?): List<ClassEntity?>?
 
-    @Query("SELECT * FROM class_table WHERE name LIKE :nameQuery")
-    fun getByName(nameQuery: String): List<ClassEntity?>?
+    @Query("SELECT * FROM class_table WHERE name LIKE :nameQuery AND userid = :userid")
+    fun getByNameAndId(nameQuery: String,userid: Int?): List<ClassEntity?>?
 
     @Insert
     fun insert(classE: ClassEntity?): Long

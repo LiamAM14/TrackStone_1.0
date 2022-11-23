@@ -25,7 +25,8 @@ class ClassManagerDBHelper (context: Context?) :
                 DBContract.ClassEntity.CLASS_ID + " INTEGER PRIMARY KEY," +
                 DBContract.ClassEntity.CLASS_NAME + TEXT_TYPE + COMMA_SEP +
                 DBContract.ClassEntity.HERO_ID + TEXT_TYPE + COMMA_SEP +
-                DBContract.ClassEntity.CLASS_URL + TEXT_TYPE + " )"
+                DBContract.ClassEntity.CLASS_URL + TEXT_TYPE + COMMA_SEP +
+                DBContract.ClassEntity.USER_ID + TEXT_TYPE + " )"
         private const val SQL_DELETE_CLASSES =
             "DROP TABLE IF EXISTS " + DBContract.ClassEntity.TABLE_NAME
     }

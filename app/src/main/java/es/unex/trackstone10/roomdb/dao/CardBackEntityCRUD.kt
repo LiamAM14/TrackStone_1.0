@@ -21,7 +21,8 @@ class CardBackEntityCRUD private constructor(context: Context){
         val projection = arrayOf(
             DBContract.CardBackEntity.CARDBACK_ID,
             DBContract.CardBackEntity.CARDBACK_NAME,
-            DBContract.CardBackEntity.CARDBACK_URL
+            DBContract.CardBackEntity.CARDBACK_URL,
+            DBContract.CardBackEntity.USER_ID
         )
 
         val selection: String? = null
@@ -57,6 +58,7 @@ class CardBackEntityCRUD private constructor(context: Context){
         values.put(DBContract.CardBackEntity.CARDBACK_ID,cardback.id)
         values.put(DBContract.CardBackEntity.CARDBACK_NAME,cardback.name)
         values.put(DBContract.CardBackEntity.CARDBACK_URL,cardback.url)
+        values.put(DBContract.CardBackEntity.USER_ID,cardback.userid)
 
         return db?.insert(DBContract.CardBackEntity.TABLE_NAME,null,values) ?: -1
     }
@@ -85,7 +87,8 @@ class CardBackEntityCRUD private constructor(context: Context){
             val id = cursor.getInt(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_ID))
             val name = cursor.getString(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_NAME))
             val url = cursor.getString(cursor.getColumnIndex(DBContract.CardBackEntity.CARDBACK_URL))
-            val cardback = CardBackEntity(id,name,url)
+            val userid = cursor.getInt(cursor.getColumnIndex(DBContract.CardBackEntity.USER_ID))
+            val cardback = CardBackEntity(id,name,url,userid)
             Log.d("CardBackEntityCRUD",cardback.toLog())
             return cardback
         }

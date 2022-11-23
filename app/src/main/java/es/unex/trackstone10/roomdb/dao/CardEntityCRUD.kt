@@ -26,7 +26,8 @@ class CardEntityCRUD private constructor(context: Context){
             DBContract.CardEntity.CARD_MANACOST,
             DBContract.CardEntity.CARD_INFO,
             DBContract.CardEntity.CARD_TYPE,
-            DBContract.CardEntity.CARD_RACE
+            DBContract.CardEntity.CARD_RACE,
+            DBContract.CardEntity.USER_ID
         )
 
         val selection: String? = null
@@ -67,6 +68,7 @@ class CardEntityCRUD private constructor(context: Context){
         values.put(DBContract.CardEntity.CARD_INFO,card.info)
         values.put(DBContract.CardEntity.CARD_TYPE,card.type)
         values.put(DBContract.CardEntity.CARD_RACE,card.race)
+        values.put(DBContract.CardEntity.USER_ID,card.userid)
 
         return db?.insert(DBContract.CardEntity.TABLE_NAME,null,values) ?: -1
     }
@@ -102,7 +104,8 @@ class CardEntityCRUD private constructor(context: Context){
             val info = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_INFO))
             val type = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_TYPE))
             val race = cursor.getString(cursor.getColumnIndex(DBContract.CardEntity.CARD_RACE))
-            val card = CardEntity(id,name,rarity,cardclass,manacost,info,type,race)
+            val userid = cursor.getInt(cursor.getColumnIndex(DBContract.CardEntity.USER_ID))
+            val card = CardEntity(id,name,rarity,cardclass,manacost,info,type,race,userid)
             Log.d("CardEntityCRUD",card.toLog())
             return card
         }

@@ -11,6 +11,9 @@ interface DeckDao {
     @Query("SELECT * FROM deck_table")
     fun getAll(): List<DeckEntity?>?
 
+    @Query("SELECT * FROM deck_table WHERE name = :name")
+    fun getEntity(name: String): DeckEntity?
+
     @Query("SELECT * FROM deck_table WHERE user_id = :id")
     fun getAllFromUser(id: String): List<DeckEntity?>?
 

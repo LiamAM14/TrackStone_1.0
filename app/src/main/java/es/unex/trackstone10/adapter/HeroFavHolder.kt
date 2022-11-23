@@ -14,6 +14,7 @@ class HeroFavHolder (view: View): RecyclerView.ViewHolder(view){
     fun render(cards: ClassEntity?, onClickListener: (ClassEntity) -> Unit){
         if(cards != null) {
             binding.tvCard.text = cards.name
+            binding.tvCard2.text = ""
             Glide.with(binding.ivCard.context).load(cards.url).into(binding.ivCard)
             itemView.setOnClickListener{ onClickListener(cards)}
         }

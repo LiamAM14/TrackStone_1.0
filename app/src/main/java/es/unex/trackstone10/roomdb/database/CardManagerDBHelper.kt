@@ -29,7 +29,8 @@ class CardManagerDBHelper (context: Context?) :
                 DBContract.CardEntity.CARD_MANACOST + TEXT_TYPE + COMMA_SEP +
                 DBContract.CardEntity.CARD_INFO + TEXT_TYPE + COMMA_SEP +
                 DBContract.CardEntity.CARD_TYPE + TEXT_TYPE + COMMA_SEP +
-                DBContract.CardEntity.CARD_RACE + TEXT_TYPE + " )"
+                DBContract.CardEntity.CARD_RACE + TEXT_TYPE + COMMA_SEP +
+                DBContract.CardEntity.USER_ID + TEXT_TYPE + " )"
 
         private const val SQL_DELETE_CARDS =
             "DROP TABLE IF EXISTS" + DBContract.CardEntity.TABLE_NAME

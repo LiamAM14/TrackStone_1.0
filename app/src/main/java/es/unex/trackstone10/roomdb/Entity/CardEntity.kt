@@ -33,10 +33,13 @@ class CardEntity : Serializable{
     @ColumnInfo(name = "race")
     var race: String? = String()
 
+    @ColumnInfo(name = "userid")
+    var userid: Int? = 0
+
 
 
     @Ignore
-    internal constructor(name: String?,rarity:Int?,cardclass:Int?,manacost:Int?,info: String?,type: String?, race: String?){
+    internal constructor(name: String?,rarity:Int?,cardclass:Int?,manacost:Int?,info: String?,type: String?, race: String?,userid: Int?){
         this.name = name
         this.rarity = rarity
         this.cardclass = cardclass
@@ -44,9 +47,10 @@ class CardEntity : Serializable{
         this.info = info
         this.type = type
         this.race = race
+        this.userid = userid
     }
 
-    constructor(id: Int, name: String?,rarity:Int?,cardclass:Int?,manacost:Int?,info: String?,type: String?,race: String?){
+    constructor(id: Int, name: String?,rarity:Int?,cardclass:Int?,manacost:Int?,info: String?,type: String?,race: String?,userid: Int?){
         this.id = id
         this.name = name
         this.rarity = rarity
@@ -55,6 +59,7 @@ class CardEntity : Serializable{
         this.info = info
         this.type = type
         this.race = race
+        this.userid = userid
     }
 
 
@@ -68,16 +73,18 @@ class CardEntity : Serializable{
         info = intent.getStringExtra(CARD_INFO).toString()
         type = intent.getStringExtra(CARD_TYPE).toString()
         race = intent.getStringExtra(CARD_RACE).toString()
+        userid = intent.getIntExtra(USER_ID,0)
     }
 
     override fun toString(): String {
-        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + rarity + ITEM_SEPARATOR + cardclass + ITEM_SEPARATOR
-                + manacost+ ITEM_SEPARATOR + info + ITEM_SEPARATOR + type + ITEM_SEPARATOR + race + ITEM_SEPARATOR)
+        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + rarity.toString() + ITEM_SEPARATOR + cardclass.toString() + ITEM_SEPARATOR
+                + manacost.toString() + ITEM_SEPARATOR + info + ITEM_SEPARATOR + type + ITEM_SEPARATOR + race + ITEM_SEPARATOR + userid.toString())
     }
 
     fun toLog(): String {
         return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "Rarity: " + rarity + ITEM_SEPARATOR + "Card class: " + cardclass
-        + ITEM_SEPARATOR+ "Manacost: " + manacost + ITEM_SEPARATOR +"Info: " + info + ITEM_SEPARATOR + "Type: " + type + ITEM_SEPARATOR + "Race: " + race)
+        + ITEM_SEPARATOR+ "Manacost: " + manacost + ITEM_SEPARATOR +"Info: " + info + ITEM_SEPARATOR + "Type: " + type + ITEM_SEPARATOR + "Race: " + race +
+                ITEM_SEPARATOR + "User_id: " + userid)
     }
 
     companion object{
@@ -98,9 +105,11 @@ class CardEntity : Serializable{
         @Ignore
         const val CARD_RACE:String = "race"
         @Ignore
+        const val USER_ID:String = "userid"
+        @Ignore
         val ITEM_SEPARATOR:String = System.getProperty("line.separator") as String
 
-        fun packageIntent(intent: Intent,rarity: Int?,cardclass: Int?,manacost: Int?,name: String?,info: String?,type: String?,race: String?){
+        fun packageIntent(intent: Intent,rarity: Int?,cardclass: Int?,manacost: Int?,name: String?,info: String?,type: String?,race: String?,userid: Int?){
             intent.putExtra(CARD_NAME,name)
             intent.putExtra(CARD_RARITY,rarity)
             intent.putExtra(CARD_CLASS,cardclass)
@@ -108,6 +117,7 @@ class CardEntity : Serializable{
             intent.putExtra(CARD_INFO,info)
             intent.putExtra(CARD_TYPE,type)
             intent.putExtra(CARD_RACE,race)
+            intent.putExtra(USER_ID,userid)
         }
 
     }

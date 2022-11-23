@@ -2,7 +2,6 @@ package es.unex.trackstone10.ui.profile
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import es.unex.trackstone10.*
 import es.unex.trackstone10.databinding.FragmentProfileBinding
-import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
 class ProfileFragment : Fragment() {

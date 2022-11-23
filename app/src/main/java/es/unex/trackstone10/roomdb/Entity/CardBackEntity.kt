@@ -18,16 +18,21 @@ class CardBackEntity : Serializable {
     @ColumnInfo(name = "url")
     var url: String? = String()
 
+    @ColumnInfo(name = "userid")
+    var userid: Int? = 0
+
     @Ignore
-    internal constructor(name: String?, url: String?) {
+    internal constructor(name: String?, url: String?,userid: Int?) {
         this.name = name
         this.url = url
+        this.userid = userid
     }
 
-    constructor(id: Int, name: String?, url: String) {
+    constructor(id: Int, name: String?, url: String,userid: Int?) {
         this.id = id
         this.name = name
         this.url = url
+        this.userid = userid
     }
 
     @Ignore
@@ -35,14 +40,15 @@ class CardBackEntity : Serializable {
         id = intent.getLongExtra(CARDBACK_ID, 0).toInt()
         name = intent.getStringExtra(CARDBACK_NAME).toString()
         url = intent.getStringExtra(CARDBACK_URL).toString()
+        userid = intent.getIntExtra(USER_ID,0)
     }
 
     override fun toString(): String {
-        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + url)
+        return (id.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + url + ITEM_SEPARATOR + userid.toString())
     }
 
     fun toLog(): String {
-        return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "Url: " + url)
+        return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "Url: " + url + "User_id: " + userid)
     }
 
 
@@ -57,11 +63,15 @@ class CardBackEntity : Serializable {
         const val CARDBACK_URL: String = "url"
 
         @Ignore
+        const val USER_ID: String = "userid"
+
+        @Ignore
         val ITEM_SEPARATOR: String = System.getProperty("line.separator") as String
 
-        fun packageIntent(intent: Intent, name: String?, url: String?) {
+        fun packageIntent(intent: Intent, name: String?, url: String?,userid: Int?) {
             intent.putExtra(CARDBACK_NAME, name)
             intent.putExtra(CARDBACK_URL, url)
+            intent.putExtra(USER_ID,userid)
         }
     }
 }

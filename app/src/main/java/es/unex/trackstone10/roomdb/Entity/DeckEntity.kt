@@ -1,6 +1,8 @@
 package es.unex.trackstone10.roomdb.Entity
 
+import android.content.ClipData.Item
 import android.content.Intent
+import android.provider.ContactsContract.CommonDataKinds.Im
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
@@ -23,6 +25,7 @@ class DeckEntity : Serializable {
 
     @ColumnInfo(name = "user_id")
     var user_id: Int? = 0
+
 
     @Ignore
     internal constructor(classid: Int?, name: String, count: Int, user_id: Int) {
@@ -50,11 +53,12 @@ class DeckEntity : Serializable {
     }
 
     override fun toString(): String {
-        return (id.toString() + classid.toString() + name + count.toString() + user_id.toString())
+        return (id.toString() + ITEM_SEPARATOR + classid.toString() + ITEM_SEPARATOR + name + ITEM_SEPARATOR + count.toString() + ITEM_SEPARATOR +
+                user_id.toString())
     }
 
     fun toLog(): String {
-        return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name)
+        return ("ID: " + id + ITEM_SEPARATOR + "Name: " + name + ITEM_SEPARATOR + "Count: " + count + ITEM_SEPARATOR + "User_id: " + user_id)
     }
 
     companion object {

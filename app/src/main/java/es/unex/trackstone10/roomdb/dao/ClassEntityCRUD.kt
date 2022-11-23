@@ -23,7 +23,8 @@ class ClassEntityCRUD private constructor(context: Context){
             DBContract.ClassEntity.CLASS_ID,
             DBContract.ClassEntity.CLASS_NAME,
             DBContract.ClassEntity.HERO_ID,
-            DBContract.ClassEntity.CLASS_URL
+            DBContract.ClassEntity.CLASS_URL,
+            DBContract.ClassEntity.USER_ID
         )
 
         val selection: String? = null
@@ -60,6 +61,7 @@ class ClassEntityCRUD private constructor(context: Context){
         values.put(DBContract.ClassEntity.CLASS_NAME,classE.name)
         values.put(DBContract.ClassEntity.HERO_ID,classE.idhero)
         values.put(DBContract.ClassEntity.CLASS_URL,classE.url)
+        values.put(DBContract.ClassEntity.USER_ID,classE.userid)
 
         return db?.insert(DBContract.ClassEntity.TABLE_NAME,null,values) ?: -1
     }
@@ -89,7 +91,8 @@ class ClassEntityCRUD private constructor(context: Context){
             val name = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_NAME))
             val idhero = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.HERO_ID))
             val url = cursor.getString(cursor.getColumnIndex(DBContract.ClassEntity.CLASS_URL))
-            val classE = ClassEntity(id,name,idhero,url)
+            val userid = cursor.getInt(cursor.getColumnIndex(DBContract.ClassEntity.USER_ID))
+            val classE = ClassEntity(id,name,idhero,url,userid)
             Log.d("ClassEntityCRUD", classE.toLog())
             return classE
         }

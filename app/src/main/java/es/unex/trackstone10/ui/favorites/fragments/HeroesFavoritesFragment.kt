@@ -1,5 +1,6 @@
 package es.unex.trackstone10.ui.favorites.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -11,7 +12,6 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.HeroFavInfoActivity
-import es.unex.trackstone10.HeroInfoActivity
 import es.unex.trackstone10.adapter.HeroFavAdapter
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
 import es.unex.trackstone10.roomdb.Entity.ClassEntity
@@ -27,6 +27,8 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private val handler = Handler(Looper.getMainLooper())
     private var heroList = (mutableListOf<ClassEntity?>())
 
+    var userId:Int? = 0
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -36,6 +38,8 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         binding.svCard.setOnQueryTextListener(this)
         initRecyclerView()
         getHeroReclycer()
+        val sharedPreferences = activity?.getSharedPreferences("userid", Context.MODE_PRIVATE)
+        userId = sharedPreferences?.getInt("userid", 0)
         return view
     }
 
@@ -54,7 +58,7 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getHeroReclycer(){
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
-            val hero = db?.classDao?.getAll()
+            val hero = db?.classDao?.getAllById(userId)
             handler.post{
                 if(hero != null){
                     heroList.clear()
@@ -69,7 +73,7 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(activity)
             val query2 = "$query%"
-            val hero = db?.classDao?.getByName(query2)
+            val hero = db?.classDao?.getByNameAndId(query2,userId)
             handler.post{
                 if(hero != null){
                     heroList.clear()
@@ -87,6 +91,9 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText?.length == 0){
+            getHeroReclycer()
+        }
         return true
     }
 }

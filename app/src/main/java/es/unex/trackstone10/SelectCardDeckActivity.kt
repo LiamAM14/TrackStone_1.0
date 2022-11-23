@@ -20,21 +20,22 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     private lateinit var binding: ActivitySelectCardDeckBinding
     private lateinit var adapter: cardAddDeckAdapter
     private var cardList = (mutableListOf<CardResponse>())
-    private val classSelected = intent.getStringExtra("CLASS_SLUG")
-    private val classSlug = "$classSelected,neutral"
+    private var classSelected:String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectCardDeckBinding.inflate((layoutInflater))
+        var deckId = intent.getIntExtra("DECK_ID",0)
+        var userId = intent.getIntExtra("USER_ID",0)
         setContentView(binding.root)
-        initRecyclerView()
+        initRecyclerView(deckId,userId)
         getClassCards()
 
     }
 
 
-    private fun initRecyclerView() {
-        adapter = cardAddDeckAdapter(cardList)
+    private fun initRecyclerView(deckId:Int?,userId:Int?) {
+        adapter = cardAddDeckAdapter(cardList,deckId, userId,this)
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewCards.adapter = adapter
     }
@@ -42,13 +43,14 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
     private fun getClassCards() {
         CoroutineScope(Dispatchers.IO).launch {
-
+            classSelected = intent.getStringExtra("CLASS_SLUG")
+            val classSlug = "$classSelected,neutral"
             val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
             val cards: CardResponseList?
 
 
             val call = retrofit.create(APIService::class.java)
-                .getCardsByClass(classSlug, "standard", "manaCost:asc", 1300, "en_US")
+                .getCardsByClass(classSlug, "standard", "groupByClass:asc,manaCost:asc", 1300, "en_US")
             cards = call.body()
             runOnUiThread {
                 if (call.isSuccessful) {
@@ -71,7 +73,8 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-
+            classSelected = intent.getStringExtra("CLASS_SLUG")
+            val classSlug = "$classSelected,neutral"
             val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
 
             val call =
@@ -94,7 +97,6 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
             }
         }
     }
-       @SuppressLint("SuspiciousIndentation")
        private fun hideKeyboard() {
        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
            imm.hideSoftInputFromWindow(binding.Croot.windowToken, 0)

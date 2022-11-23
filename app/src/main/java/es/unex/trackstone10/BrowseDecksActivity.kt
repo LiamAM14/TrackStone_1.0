@@ -19,6 +19,6 @@ class BrowseDecksActivity : AppCompatActivity() {
 
     private fun initRecyclerView(){
         binding.recyclerViewDecks.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewDecks.adapter = deckAdapter(DeckProvider.deckList)
+        //binding.recyclerViewDecks.adapter = deckAdapter(DeckProvider.deckList)
     }
 }

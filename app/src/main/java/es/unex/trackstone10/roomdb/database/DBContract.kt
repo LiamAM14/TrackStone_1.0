@@ -16,6 +16,7 @@ class DBContract private constructor() {
         const val CARDBACK_NAME = "name"
         const val CARDBACK_ID = "id"
         const val CARDBACK_URL = "url"
+        const val USER_ID = "id"
     }
 
     object CardEntity : BaseColumns{
@@ -28,6 +29,7 @@ class DBContract private constructor() {
         const val CARD_INFO = "info"
         const val CARD_TYPE = "type"
         const val CARD_RACE = "race"
+        const val USER_ID = "id"
     }
 
     object ClassEntity : BaseColumns{
@@ -36,6 +38,7 @@ class DBContract private constructor() {
         const val CLASS_NAME = "name"
         const val HERO_ID = "id_hero"
         const val CLASS_URL = "url"
+        const val USER_ID = "id"
     }
 
     object DeckEntity: BaseColumns{

@@ -1,5 +1,6 @@
 package es.unex.trackstone10
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -22,6 +23,8 @@ class HeroInfoActivity : AppCompatActivity() {
         binding.heroeSkinDetailsName.text = cards.name
         binding.textViewArtist.text = "Artist: ${cards.artistName}"
 
+        val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
+        var userId = sharedPreferences.getInt("userid", 0)
 
         binding.addHeroeSkinFavorite.setOnClickListener{
             AppExecutors.instance?.diskIO()?.execute{
@@ -30,7 +33,8 @@ class HeroInfoActivity : AppCompatActivity() {
                     ClassEntity(
                         cards.name,
                         cards.classId,
-                        cards.image
+                        cards.image,
+                        userId
                     )
                 )
             }
