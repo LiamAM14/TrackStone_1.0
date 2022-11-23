@@ -11,11 +11,12 @@ import java.io.Serializable
 
 @Entity(tableName = "deck_table")
 class DeckEntity : Serializable {
-    @ColumnInfo(name = "classid")
-    var classid: Int? = 0
 
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
+
+    @ColumnInfo(name = "classid")
+    var classid: Int? = 0
 
     @ColumnInfo(name = "name")
     var name: String? = String()

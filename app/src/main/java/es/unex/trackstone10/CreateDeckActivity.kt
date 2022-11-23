@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -78,12 +80,13 @@ class CreateDeckActivity : AppCompatActivity() {
                 if(deck?.id != null) {
                     deckId = deck.id
                 }
+                val intent = Intent(this, SelectCardDeckActivity::class.java)
+                intent.putExtra("USER_ID", userId)
+                intent.putExtra("DECK_ID", deckId)
+                intent.putExtra("CLASS_SLUG", textClass.lowercase())
+                startActivity(intent)
             }
-            val intent = Intent(this, SelectCardDeckActivity::class.java)
-            intent.putExtra("USER_ID", userId)
-            intent.putExtra("DECK_ID", deckId)
-            intent.putExtra("CLASS_SLUG", textClass.lowercase())
-            startActivity(intent)
+
         }
     }
 
