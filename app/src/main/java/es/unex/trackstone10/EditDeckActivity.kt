@@ -70,7 +70,8 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private fun getDeckCardByName(query: String) {
         AppExecutors.instance?.diskIO()?.execute {
             val db = TrackstoneDatabase.getInstance(this)
-            val cards = db?.deckListDao?.getCardsByName(query)
+            val queryPercentage = "%$query%"
+            val cards = db?.deckListDao?.getCardsByName(queryPercentage)
             if (cards != null) {
                 cardList.clear()
                 cardList.addAll(cards)

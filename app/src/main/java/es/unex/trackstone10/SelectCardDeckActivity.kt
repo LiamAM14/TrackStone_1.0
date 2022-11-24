@@ -31,7 +31,6 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
         var deckId = intent.getIntExtra("DECK_ID", 0)
         var userId = intent.getIntExtra("USER_ID", 0)
         binding.svCard.setOnQueryTextListener(this)
-        binding.svCard.setOnQueryTextListener(this)
         setContentView(binding.root)
         initRecyclerView(deckId, userId)
         getClassCards()
