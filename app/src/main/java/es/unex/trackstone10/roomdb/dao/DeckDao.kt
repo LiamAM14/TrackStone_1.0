@@ -3,6 +3,7 @@ package es.unex.trackstone10.roomdb.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
 
 @Dao
@@ -16,6 +17,9 @@ interface DeckDao {
 
     @Query("SELECT count FROM deck_table WHERE id = :idDeck")
     fun getCountCards(idDeck:Int?): Int?
+
+    @Query("UPDATE deck_table SET count = count + 1 WHERE id = :idDeck")
+    fun AddingCards(idDeck:Int?)
 
     @Query("SELECT * FROM deck_table WHERE user_id = :id")
     fun getAllFromUser(id: String): List<DeckEntity?>?

@@ -1,4 +1,6 @@
 package es.unex.trackstone10
 
-class EditDeckActivity {
+import androidx.appcompat.app.AppCompatActivity
+
+class EditDeckActivity: AppCompatActivity() {
 }
