@@ -22,17 +22,18 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     private lateinit var binding: ActivitySelectCardDeckBinding
     private lateinit var adapter: cardAddDeckAdapter
     private var cardList = (mutableListOf<CardResponse>())
-    private var classSelected:String? = null
+    private var classSelected: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectCardDeckBinding.inflate((layoutInflater))
         binding.buttonCreateDeck.text = "Edit Deck"
-        var deckId = intent.getIntExtra("DECK_ID",0)
-        var userId = intent.getIntExtra("USER_ID",0)
+        var deckId = intent.getIntExtra("DECK_ID", 0)
+        var userId = intent.getIntExtra("USER_ID", 0)
+        binding.svCard.setOnQueryTextListener(this)
         binding.svCard.setOnQueryTextListener(this)
         setContentView(binding.root)
-        initRecyclerView(deckId,userId)
+        initRecyclerView(deckId, userId)
         getClassCards()
         binding.buttonCreateDeck.setOnClickListener {
             goToEditCards(deckId)
@@ -45,8 +46,8 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     }
 
 
-    private fun initRecyclerView(deckId:Int?,userId:Int?) {
-        adapter = cardAddDeckAdapter(cardList,deckId, userId,this)
+    private fun initRecyclerView(deckId: Int?, userId: Int?) {
+        adapter = cardAddDeckAdapter(cardList, deckId, userId, this)
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewCards.adapter = adapter
     }
@@ -61,7 +62,13 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
 
             val call = retrofit.create(APIService::class.java)
-                .getCardsByClass(classSlug, "standard", "groupByClass:asc,manaCost:asc", 1300, "en_US")
+                .getCardsByClass(
+                    classSlug,
+                    "standard",
+                    "groupByClass:asc,manaCost:asc",
+                    1300,
+                    "en_US"
+                )
             cards = call.body()
             runOnUiThread {
                 if (call.isSuccessful) {
@@ -76,10 +83,7 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
                 }
                 hideKeyboard()
             }
-
-
         }
-
     }
 
     private fun searchByName(query: String) {
@@ -90,27 +94,35 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
 
             val call =
                 retrofit.create(APIService::class.java)
-                    .getCardsByClassAndName(query,classSlug, "standard", "groupByClass:asc,manaCost:asc",1300, "en_US")
+                    .getCardsByClassAndName(
+                        query,
+                        classSlug,
+                        "standard",
+                        "groupByClass:asc,manaCost:asc",
+                        1300,
+                        "en_US"
+                    )
 
             val cards = call.body()
-                runOnUiThread{
-                    if (call.isSuccessful) {
-                        if (cards != null) {
-                            val cardsReceived = cards.cards
-                            cardList.clear()
-                            cardList.addAll(cardsReceived)
-                            adapter.notifyDataSetChanged()
-                        }
-                    } else {
-                        showError()
+            runOnUiThread {
+                if (call.isSuccessful) {
+                    if (cards != null) {
+                        val cardsReceived = cards.cards
+                        cardList.clear()
+                        cardList.addAll(cardsReceived)
+                        adapter.notifyDataSetChanged()
                     }
-                    hideKeyboard()
+                } else {
+                    showError()
+                }
+                hideKeyboard()
             }
         }
     }
-       private fun hideKeyboard() {
-       val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-           imm.hideSoftInputFromWindow(binding.Croot.windowToken, 0)
+
+    private fun hideKeyboard() {
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(binding.Croot.windowToken, 0)
     }
 
     private fun showError() {
@@ -126,7 +138,7 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText?.length == 0) {
+        if (newText?.length == 0) {
             getClassCards()
         }
         return true

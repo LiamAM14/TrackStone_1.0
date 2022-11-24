@@ -19,11 +19,14 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     private lateinit var binding: ActivitySelectCardDeckBinding
     private lateinit var adapter: editCardDeckAdapter
     private val cardList = (mutableListOf<DeckListCardEntity?>())
+    private var deckId = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectCardDeckBinding.inflate(layoutInflater)
-        val deckId = intent.getIntExtra("DECK_ID", 0)
+        val deckIdFromIntent = intent.getIntExtra("DECK_ID", 0)
+        binding.svCard.setOnQueryTextListener(this)
+        deckId = deckIdFromIntent
         AppExecutors.instance?.diskIO()?.execute {
             val db = TrackstoneDatabase.getInstance(this)
             val count = db?.deckDao?.getCountCards(deckId).toString()
@@ -64,6 +67,18 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         }
     }
 
+    private fun getDeckCardByName(query: String) {
+        AppExecutors.instance?.diskIO()?.execute {
+            val db = TrackstoneDatabase.getInstance(this)
+            val cards = db?.deckListDao?.getCardsByName(query)
+            if (cards != null) {
+                cardList.clear()
+                cardList.addAll(cards)
+                adapter.notifyDataSetChanged()
+            }
+        }
+    }
+
     fun onDeletedItem(position: Int, deckId: Int, cards: DeckListCardEntity?) {
         CoroutineScope(Dispatchers.IO).launch {
             val db = TrackstoneDatabase.getInstance(this@EditDeckActivity)
@@ -84,10 +99,16 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextSubmit(query: String?): Boolean {
+        if (!query.isNullOrEmpty()) {
+            getDeckCardByName(query)
+        }
         return true
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
+        if (newText?.length == 0) {
+            getDeckCardRecycler(deckId)
+        }
         return true
     }
 
