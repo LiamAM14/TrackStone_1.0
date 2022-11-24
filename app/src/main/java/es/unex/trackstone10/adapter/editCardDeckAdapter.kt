@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.R
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 
-class editCardDeckAdapter(val cardsList: List<DeckListCardEntity?>, var deckId:Int?, var conText: FragmentActivity) : RecyclerView.Adapter<editCardDeckHolder>() {
+class editCardDeckAdapter(
+    val cardsList: List<DeckListCardEntity?>,
+    private val onClickDeleted:(Int) -> Unit,
+    var deckId:Int?,
+    var conText: FragmentActivity) : RecyclerView.Adapter<editCardDeckHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): editCardDeckHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -16,7 +20,7 @@ class editCardDeckAdapter(val cardsList: List<DeckListCardEntity?>, var deckId:I
 
     override fun onBindViewHolder(holder: editCardDeckHolder, position: Int) {
         val item = cardsList[position]
-        holder.render(item, deckId, conText)
+        holder.render(item, onClickDeleted)
     }
 
     override fun getItemCount(): Int = cardsList.size

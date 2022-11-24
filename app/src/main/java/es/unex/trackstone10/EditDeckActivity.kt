@@ -9,7 +9,7 @@ import es.unex.trackstone10.databinding.ActivitySelectCardDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
-class EditDeckActivity: AppCompatActivity(), SearchView.OnQueryTextListener  {
+class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
     private lateinit var binding: ActivitySelectCardDeckBinding
     private lateinit var adapter: editCardDeckAdapter
@@ -18,9 +18,9 @@ class EditDeckActivity: AppCompatActivity(), SearchView.OnQueryTextListener  {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectCardDeckBinding.inflate(layoutInflater)
-        var deckId = intent.getIntExtra("DECK_ID",0)
+        val deckId = intent.getIntExtra("DECK_ID", 0)
         AppExecutors.instance?.diskIO()?.execute {
-            var db = TrackstoneDatabase.getInstance(this)
+            val db = TrackstoneDatabase.getInstance(this)
             binding.contCards.text = db?.deckDao?.getCountCards(deckId).toString()
         }
         setContentView(binding.root)
@@ -28,23 +28,46 @@ class EditDeckActivity: AppCompatActivity(), SearchView.OnQueryTextListener  {
         getDeckCardRecycler(deckId)
     }
 
-    private fun initRecyclerView(deckId:Int) {
-        adapter = editCardDeckAdapter(cardList, deckId, this)
+    private fun initRecyclerView(deckId: Int) {
+        adapter = editCardDeckAdapter(
+            cardsList = cardList,
+            onClickDeleted = { onDeletedItem(it, deckId, cardList[it]) },
+            deckId = deckId,
+            conText = this
+        )
         binding.recyclerViewCards.layoutManager = LinearLayoutManager(this)
         binding.recyclerViewCards.adapter = adapter
     }
 
-    private fun getDeckCardRecycler(deckId:Int) {
+    private fun getDeckCardRecycler(deckId: Int) {
         AppExecutors.instance?.diskIO()?.execute {
-            var db = TrackstoneDatabase.getInstance(this)
+            val db = TrackstoneDatabase.getInstance(this)
             val cards = db?.deckListDao?.getAllByDeckId(deckId)
-            if(cards != null) {
+            if (cards != null) {
                 cardList.clear()
                 cardList.addAll(cards)
                 adapter.notifyDataSetChanged()
             }
         }
     }
+
+    fun onDeletedItem(position: Int, deckId: Int, cards: DeckListCardEntity?) {
+        cardList.removeAt(position)
+        adapter.notifyItemRemoved(position)
+        AppExecutors.instance?.diskIO()?.execute {
+            val db = TrackstoneDatabase.getInstance(this)
+            if (cards != null) {
+                if (db?.deckListDao?.checkCopies(deckId, cards.card_name!!)!! == 1) {
+                    db.deckListDao?.deleteCardDeck(deckId, cards.card_name)
+                    db.deckDao?.decCount(deckId)
+                } else {
+                    db.deckListDao?.decCopies(deckId, cards.card_name!!)
+                    db.deckDao?.decCount(deckId)
+                }
+            }
+        }
+    }
+
 
     override fun onQueryTextSubmit(query: String?): Boolean {
         return true
