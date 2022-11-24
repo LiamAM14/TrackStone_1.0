@@ -1,13 +1,17 @@
 package es.unex.trackstone10.adapter
 
 import android.content.Context
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.ButtonNavigationMenuActivity
+import es.unex.trackstone10.SelectCardDeckActivity
 import es.unex.trackstone10.databinding.ItemAddCardDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
@@ -55,7 +59,8 @@ class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
                     }
                 }
                 else{
-                    //error
+                    val intent = Intent(context, ButtonNavigationMenuActivity::class.java)
+                    context?.startActivity(intent)
                 }
             }
         }

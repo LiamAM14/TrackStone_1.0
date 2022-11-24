@@ -30,4 +30,7 @@ interface DeckDao {
     @Query("DELETE FROM deck_table")
     fun deleteAll()
 
+    @Query("DELETE FROM deck_table WHERE id = :id")
+    fun deleteDeckFromId(id: Int?)
+
 }

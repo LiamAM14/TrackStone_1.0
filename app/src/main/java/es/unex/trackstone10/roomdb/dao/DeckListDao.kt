@@ -30,4 +30,7 @@ interface DeckListDao {
 
     @Update
     fun update(deckList : DeckListCardEntity?): Int
+
+    @Query("DELETE FROM deck_list WHERE deck_id = :id")
+    fun deleteByDeckId(id: Int?)
 }

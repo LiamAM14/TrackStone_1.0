@@ -35,13 +35,27 @@
         android:id="@+id/editDeckButton"
         android:layout_width="80dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/rounded_button"
         android:minHeight="48dp"
         android:text="@string/editDeck"
         android:textColor="@color/purpleCute"
         app:layout_constraintBottom_toBottomOf="@+id/imageViewClassDeck"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageViewClassDeck"
+        tools:ignore="DuplicateSpeakableTextCheck" />
+
+    <Button
+        android:id="@+id/deleteDeckButton"
+        android:layout_width="80dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/deleteDeck"
+        android:textColor="@color/purpleCute"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewClassDeck"
+        app:layout_constraintEnd_toStartOf="@+id/editDeckButton"
         app:layout_constraintTop_toTopOf="@+id/imageViewClassDeck"
         tools:ignore="DuplicateSpeakableTextCheck" />
 

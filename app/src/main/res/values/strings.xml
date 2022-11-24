@@ -27,6 +27,7 @@
     <string name="changeDataProfileButton">Change</string>
     <string name="card_description">Image of a card</string>
     <string name="editDeck">Edit</string>
+    <string name="deleteDeck">Delete</string>
     <string name="createDeck">Create deck</string>
     <string name="title_home">Home</string>
     <string name="title_decks">Decks</string>
