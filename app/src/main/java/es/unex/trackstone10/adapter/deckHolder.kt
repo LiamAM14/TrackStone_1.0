@@ -16,7 +16,7 @@ class deckHolder(view: View): RecyclerView.ViewHolder(view) {
 
     val binding = ItemDeckBinding.bind(view)
 
-   fun render(deck: DeckEntity?, context: FragmentActivity?) {
+   fun render(deck: DeckEntity?, context: FragmentActivity?, onClickDeleted: (Int) -> Unit) {
        if (deck != null) {
            binding.deckName.text = deck.name
            when (deck.classid) {
@@ -39,13 +39,7 @@ class deckHolder(view: View): RecyclerView.ViewHolder(view) {
            intent.putExtra("DECK_ID",deck?.id)
            context?.startActivity(intent)
        }
-       binding.deleteDeckButton.setOnClickListener {
-           AppExecutors.instance?.diskIO()?.execute {
-               val db = TrackstoneDatabase.getInstance(context)
-               db?.deckDao?.deleteDeckFromId(deck?.id)
-               db?.deckListDao?.deleteByDeckId(deck?.id)
-           }
-       }
+       binding.deleteDeckButton.setOnClickListener { onClickDeleted(adapterPosition) }
    }
 
 }
