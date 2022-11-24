@@ -11,6 +11,9 @@ import es.unex.trackstone10.AppExecutors
 import es.unex.trackstone10.databinding.ItemAddCardDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -22,10 +25,9 @@ class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         Glide.with(binding.ivCard.context).load(cards.image).into(binding.ivCard)
         binding.AddCardDeckButton.setOnClickListener {
-            AppExecutors.instance?.diskIO()?.execute {
+            CoroutineScope(Dispatchers.IO).launch {
                 val db = TrackstoneDatabase.getInstance(context)
-                val probar = db?.deckDao?.getCountCards(id)!!
-                if(db?.deckDao?.getCountCards(id)!! <= 5) {
+                if(db?.deckDao?.getCountCards(id)!! < 5) {
                     if (cards != null && id != null) {
                         val check = db?.deckListDao?.checkCard(id, cards.name!!)
                         if (check?.size != 0) {
@@ -53,7 +55,7 @@ class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
                     }
                 }
                 else{
-                    Toast.makeText(context, "The deck is full", Toast.LENGTH_SHORT).show()
+                    //error
                 }
             }
         }
