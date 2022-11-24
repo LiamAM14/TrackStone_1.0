@@ -52,8 +52,6 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     fun onDeletedItem(position: Int, deckId: Int, cards: DeckListCardEntity?) {
-        cardList.removeAt(position)
-        adapter.notifyItemRemoved(position)
         AppExecutors.instance?.diskIO()?.execute {
             val db = TrackstoneDatabase.getInstance(this)
             if (cards != null) {
@@ -63,6 +61,8 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 } else {
                     db.deckListDao?.decCopies(deckId, cards.card_name!!)
                     db.deckDao?.decCount(deckId)
+                    cardList.removeAt(position)
+                    adapter.notifyItemRemoved(position)
                 }
             }
         }
