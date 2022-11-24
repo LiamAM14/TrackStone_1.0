@@ -1,18 +1,15 @@
 package es.unex.trackstone10.ui.decks
 
 import android.content.Intent
-import android.os.Binder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.*
-import es.unex.trackstone10.adapter.HeroFavAdapter
 import es.unex.trackstone10.adapter.deckAdapter
 import es.unex.trackstone10.databinding.FragmentDecksBinding
 import es.unex.trackstone10.roomdb.Entity.DeckEntity

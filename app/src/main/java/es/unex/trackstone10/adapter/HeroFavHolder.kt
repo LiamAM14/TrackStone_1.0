@@ -1,6 +1,5 @@
 package es.unex.trackstone10.adapter
 
-import android.content.DialogInterface.OnClickListener
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide

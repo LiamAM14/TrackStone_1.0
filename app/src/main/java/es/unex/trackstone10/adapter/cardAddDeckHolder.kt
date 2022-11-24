@@ -1,6 +1,5 @@
 package es.unex.trackstone10.adapter
 
-
 import android.os.Handler
 import android.os.Looper
 import android.view.View

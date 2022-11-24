@@ -4,9 +4,7 @@ import android.content.Intent
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import es.unex.trackstone10.adapter.cardAdapter
 
 @Entity(tableName = "deck_list")
 class DeckListCardEntity {

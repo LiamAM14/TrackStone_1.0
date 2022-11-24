@@ -3,7 +3,6 @@ package es.unex.trackstone10.adapter
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import es.unex.trackstone10.API.CardResponse
 import es.unex.trackstone10.databinding.ItemCardBinding
 import es.unex.trackstone10.roomdb.Entity.CardEntity
 

@@ -4,8 +4,6 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardBackResponse
 import es.unex.trackstone10.databinding.ActivityCardBackInfoBinding

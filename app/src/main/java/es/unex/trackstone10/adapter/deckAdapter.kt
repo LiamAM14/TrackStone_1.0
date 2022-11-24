@@ -4,9 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import es.unex.trackstone10.Deck
 import es.unex.trackstone10.R
-import es.unex.trackstone10.roomdb.Entity.CardBackEntity
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
 
 class deckAdapter(val deckList: List<DeckEntity?>,var conText: FragmentActivity?): RecyclerView.Adapter<deckHolder>(){

@@ -2,11 +2,9 @@ package es.unex.trackstone10.adapter
 
 import android.content.Intent
 import android.view.View
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.AppExecutors
-import es.unex.trackstone10.CardFavInfoActivity
 import es.unex.trackstone10.EditDeckActivity
 import es.unex.trackstone10.R
 import es.unex.trackstone10.databinding.ItemDeckBinding

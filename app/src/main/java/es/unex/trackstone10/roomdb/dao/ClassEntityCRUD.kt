@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.net.http.SslCertificate.DName
 import android.util.Log
 import es.unex.trackstone10.roomdb.Entity.ClassEntity
 import es.unex.trackstone10.roomdb.database.ClassManagerDBHelper

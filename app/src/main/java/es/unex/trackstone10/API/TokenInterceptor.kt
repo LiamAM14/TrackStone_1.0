@@ -1,6 +1,5 @@
 package es.unex.trackstone10.API
 
-import es.unex.trackstone10.ui.home.fragments.CardsFragment
 import okhttp3.Interceptor
 import okhttp3.Response
 

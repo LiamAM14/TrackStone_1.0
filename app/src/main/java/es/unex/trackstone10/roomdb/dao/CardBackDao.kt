@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
 import es.unex.trackstone10.roomdb.Entity.CardBackEntity
-import es.unex.trackstone10.roomdb.Entity.CardEntity
 
 @Dao
 interface CardBackDao {

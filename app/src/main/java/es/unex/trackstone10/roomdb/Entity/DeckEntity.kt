@@ -1,8 +1,6 @@
 package es.unex.trackstone10.roomdb.Entity
 
-import android.content.ClipData.Item
 import android.content.Intent
-import android.provider.ContactsContract.CommonDataKinds.Im
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Ignore

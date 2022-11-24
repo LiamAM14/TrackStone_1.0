@@ -1,6 +1,6 @@
 package es.unex.trackstone10
 
-import android.annotation.SuppressLint
+
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
