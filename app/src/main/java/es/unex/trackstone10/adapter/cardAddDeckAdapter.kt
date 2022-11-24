@@ -9,7 +9,6 @@ import es.unex.trackstone10.R
 
 class cardAddDeckAdapter(val cardsList: List<CardResponse>,var id:Int?, var user:Int?,var conText: FragmentActivity?) : RecyclerView.Adapter<cardAddDeckHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): cardAddDeckHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return cardAddDeckHolder(layoutInflater.inflate(R.layout.item_add_card_deck, parent, false))

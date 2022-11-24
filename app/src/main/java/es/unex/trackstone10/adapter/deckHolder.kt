@@ -38,7 +38,7 @@ class deckHolder(view: View): RecyclerView.ViewHolder(view) {
        }
        binding.editDeckButton.setOnClickListener{
            val intent:Intent = Intent(context, EditDeckActivity::class.java)
-           intent.putExtra("CARD_OBJ",deck?.id)
+           intent.putExtra("DECK_ID",deck?.id)
            context?.startActivity(intent)
        }
        binding.deleteDeckButton.setOnClickListener {

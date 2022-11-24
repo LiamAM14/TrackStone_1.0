@@ -33,4 +33,7 @@ interface DeckDao {
     @Query("DELETE FROM deck_table WHERE id = :id")
     fun deleteDeckFromId(id: Int?)
 
+    @Query("UPDATE deck_table SET count = count-1 WHERE id = :deckID")
+    fun decCount(deckID: Int)
+
 }
