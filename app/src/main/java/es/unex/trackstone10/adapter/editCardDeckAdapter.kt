@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import es.unex.trackstone10.R
-import es.unex.trackstone10.roomdb.Entity.CardEntity
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 
 class editCardDeckAdapter(val cardsList: List<DeckListCardEntity?>, var deckId:Int?, var conText: FragmentActivity) : RecyclerView.Adapter<editCardDeckHolder>() {
