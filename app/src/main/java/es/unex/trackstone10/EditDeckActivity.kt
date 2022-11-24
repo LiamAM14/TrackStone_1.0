@@ -8,6 +8,9 @@ import es.unex.trackstone10.adapter.editCardDeckAdapter
 import es.unex.trackstone10.databinding.ActivitySelectCardDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
 
@@ -52,8 +55,8 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
     }
 
     fun onDeletedItem(position: Int, deckId: Int, cards: DeckListCardEntity?) {
-        AppExecutors.instance?.diskIO()?.execute {
-            val db = TrackstoneDatabase.getInstance(this)
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = TrackstoneDatabase.getInstance(this@EditDeckActivity)
             if (cards != null) {
                 if (db?.deckListDao?.checkCopies(deckId, cards.card_name!!)!! == 1) {
                     db.deckListDao?.deleteCardDeck(deckId, cards.card_name)
@@ -61,8 +64,10 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
                 } else {
                     db.deckListDao?.decCopies(deckId, cards.card_name!!)
                     db.deckDao?.decCount(deckId)
-                    cardList.removeAt(position)
-                    adapter.notifyItemRemoved(position)
+                    runOnUiThread {
+                        cardList.removeAt(position)
+                        adapter.notifyItemRemoved(position)
+                    }
                 }
             }
         }
