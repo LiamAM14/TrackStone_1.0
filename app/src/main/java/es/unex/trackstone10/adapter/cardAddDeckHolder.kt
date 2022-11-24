@@ -29,7 +29,7 @@ class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
         binding.AddCardDeckButton.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 val db = TrackstoneDatabase.getInstance(context)
-                if(db?.deckDao?.getCountCards(id)!! < 5) {
+                if(db?.deckDao?.getCountCards(id)!! < 30) {
                     if (cards != null && id != null) {
                         val check = db?.deckListDao?.checkCard(id, cards.name!!)
                         if (check?.size != 0) {

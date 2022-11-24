@@ -26,4 +26,7 @@ interface ClassDao {
 
     @Query("DELETE FROM class_table WHERE id = :idClass")
     fun deleteFromId(idClass: Int)
+
+    @Query("DELETE FROM class_table WHERE userid = :userid")
+    fun deleteByUser(userid: Int?)
 }

@@ -27,4 +27,7 @@ interface CardDao {
     @Query("DELETE FROM card_table WHERE name LIKE :nameQuery")
     fun deleteByName(nameQuery: String?)
 
+    @Query("DELETE FROM card_table WHERE userid = :userid")
+    fun deleteByUser(userid: Int?)
+
 }

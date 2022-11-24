@@ -88,6 +88,11 @@ class ProfileFragment : Fragment() {
             AppExecutors.instance?.diskIO()?.execute {
                 val db = TrackstoneDatabase.getInstance(activity)
                 db?.userdao?.deleteUser(userid)
+                db?.carddao?.deleteByUser(userid)
+                db?.classDao?.deleteByUser(userid)
+                db?.cardbackdao?.deleteByUser(userid)
+                db?.deckDao?.deleteByUser(userid)
+                db?.deckListDao?.deleteByUser(userid)
             }
             var edit = sharedPreferences?.edit()
             edit?.clear()

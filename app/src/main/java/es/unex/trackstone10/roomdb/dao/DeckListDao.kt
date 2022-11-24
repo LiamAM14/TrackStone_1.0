@@ -42,4 +42,7 @@ interface DeckListDao {
 
     @Query("SELECT * FROM deck_list WHERE deck_id = :id")
     fun getAllByDeckId(id: Int?): List<DeckListCardEntity?>?
+
+    @Query("DELETE FROM deck_list WHERE user_id = :userid")
+    fun deleteByUser(userid: Int?)
 }

@@ -27,4 +27,7 @@ interface CardBackDao {
 
     @Query("DELETE FROM card_back_table WHERE id = :idCardBack")
     fun deleteFromId(idCardBack: Int)
+
+    @Query("DELETE FROM card_back_table WHERE userid = :userid")
+    fun deleteByUser(userid: Int?)
 }

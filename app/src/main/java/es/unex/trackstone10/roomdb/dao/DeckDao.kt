@@ -39,4 +39,7 @@ interface DeckDao {
     @Query("SELECT classid FROM deck_table WHERE id = :deckID AND user_id = :userID")
     fun getSlug(deckID: Int, userID:Int): Int?
 
+    @Query("DELETE FROM deck_table WHERE user_id = :userid")
+    fun deleteByUser(userid: Int?)
+
 }
