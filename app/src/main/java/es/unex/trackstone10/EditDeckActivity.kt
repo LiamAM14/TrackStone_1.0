@@ -59,10 +59,12 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         AppExecutors.instance?.diskIO()?.execute {
             val db = TrackstoneDatabase.getInstance(this)
             val cards = db?.deckListDao?.getAllByDeckId(deckId)
-            if (cards != null) {
-                cardList.clear()
-                cardList.addAll(cards)
-                adapter.notifyDataSetChanged()
+            runOnUiThread {
+                if (cards != null) {
+                    cardList.clear()
+                    cardList.addAll(cards)
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }
