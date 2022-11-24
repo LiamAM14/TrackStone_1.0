@@ -72,10 +72,12 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
             val db = TrackstoneDatabase.getInstance(this)
             val queryPercentage = "%$query%"
             val cards = db?.deckListDao?.getCardsByName(queryPercentage)
-            if (cards != null) {
-                cardList.clear()
-                cardList.addAll(cards)
-                adapter.notifyDataSetChanged()
+            runOnUiThread {
+                if (cards != null) {
+                    cardList.clear()
+                    cardList.addAll(cards)
+                    adapter.notifyDataSetChanged()
+                }
             }
         }
     }
