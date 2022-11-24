@@ -26,7 +26,8 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         val deckId = intent.getIntExtra("DECK_ID", 0)
         AppExecutors.instance?.diskIO()?.execute {
             val db = TrackstoneDatabase.getInstance(this)
-            binding.contCards.text = db?.deckDao?.getCountCards(deckId).toString()
+            val count = db?.deckDao?.getCountCards(deckId).toString()
+            binding.contCards.text = "CARD COUNT: $count/30"
         }
         setContentView(binding.root)
         initRecyclerView(deckId)

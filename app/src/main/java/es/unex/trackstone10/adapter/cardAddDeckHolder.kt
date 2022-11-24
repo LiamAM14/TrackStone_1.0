@@ -1,17 +1,14 @@
 package es.unex.trackstone10.adapter
 
-import android.content.Context
-import android.content.Intent
+
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardResponse
-import es.unex.trackstone10.AppExecutors
-import es.unex.trackstone10.ButtonNavigationMenuActivity
-import es.unex.trackstone10.SelectCardDeckActivity
 import es.unex.trackstone10.databinding.ItemAddCardDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckListCardEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
@@ -22,6 +19,7 @@ import kotlinx.coroutines.launch
 class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val binding = ItemAddCardDeckBinding.bind(view)
+    private val handler = Handler(Looper.getMainLooper())
 
 
     fun render(cards: CardResponse, id: Int?, user: Int?, context: FragmentActivity?) {
@@ -59,8 +57,9 @@ class cardAddDeckHolder(view: View) : RecyclerView.ViewHolder(view) {
                     }
                 }
                 else{
-                    val intent = Intent(context, ButtonNavigationMenuActivity::class.java)
-                    context?.startActivity(intent)
+                    handler.post {
+                        Toast.makeText(context, "Has alcanzado el límite de cartas", Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
         }
