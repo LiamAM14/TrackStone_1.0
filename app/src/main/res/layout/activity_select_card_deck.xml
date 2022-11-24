@@ -9,14 +9,25 @@
     android:background="@color/purpleCute">
 
     <Button
-        android:id="@+id/buttonCreateDeck"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/buttonFinishDeck"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
         android:layout_alignBottom="@+id/frameLayoutRecyclerViewCards"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_button"
+        android:minHeight="48dp"
+        android:text="@string/FinishDeck"
+        android:textColor="@color/purpleCute" />
+
+    <Button
+        android:id="@+id/buttonCreateDeck"
+        android:layout_width="100dp"
+        android:layout_height="48dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="75dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/rounded_button"
         android:minHeight="48dp"

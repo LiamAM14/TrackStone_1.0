@@ -22,6 +22,7 @@
     <string name="craftCost">Craft cost</string>
     <string name="deleteUser">Delete user</string>
     <string name="addCardsToDeck">Add Cards</string>
+    <string name="FinishDeck">Finish</string>
     <string name="addCardToDeck">Add Card</string>
     <string name="logOut">Log out from Application</string>
     <string name="changeDataProfileButton">Change</string>

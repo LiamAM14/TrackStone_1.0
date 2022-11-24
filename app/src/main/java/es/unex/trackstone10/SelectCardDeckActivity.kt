@@ -2,6 +2,7 @@ package es.unex.trackstone10
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.InputMethodManager
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.*
 import es.unex.trackstone10.adapter.cardAddDeckAdapter
 import es.unex.trackstone10.databinding.ActivitySelectCardDeckBinding
+import es.unex.trackstone10.roomdb.TrackstoneDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,11 +27,19 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySelectCardDeckBinding.inflate((layoutInflater))
+        binding.buttonCreateDeck.text = "Edit Deck"
         var deckId = intent.getIntExtra("DECK_ID",0)
         var userId = intent.getIntExtra("USER_ID",0)
         setContentView(binding.root)
         initRecyclerView(deckId,userId)
         getClassCards()
+        binding.buttonCreateDeck.setOnClickListener {
+            goToEditCards(deckId)
+        }
+        binding.buttonFinishDeck.setOnClickListener {
+            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 
@@ -119,5 +129,43 @@ class SelectCardDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListen
             getClassCards()
         }
         return true
+    }
+
+    fun goToEditCards(deckId: Int) {
+        val sharedPreferences = getSharedPreferences("userid", Context.MODE_PRIVATE)
+        var userId = sharedPreferences.getInt("userid", 0)
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val db = TrackstoneDatabase.getInstance(this@SelectCardDeckActivity)
+            val class_id = db?.deckDao?.getSlug(deckId, userId)
+            val textClass = slugIntToString(class_id)
+
+            runOnUiThread {
+                val intent = Intent(this@SelectCardDeckActivity, EditDeckActivity::class.java)
+                intent.putExtra("USER_ID", userId)
+                intent.putExtra("DECK_ID", deckId)
+                intent.putExtra("CLASS_SLUG", textClass.lowercase())
+                startActivity(intent)
+            }
+        }
+
+    }
+
+    fun slugIntToString(id: Int?): String {
+        var slug = ""
+        when (id) {
+            1 -> slug = "DeathKnight"
+            2 -> slug = "DemonHunter"
+            3 -> slug = "Druid"
+            4 -> slug = "Hunter"
+            5 -> slug = "Mage"
+            6 -> slug = "Paladin"
+            7 -> slug = "Priest"
+            8 -> slug = "Rogue"
+            9 -> slug = "Shaman"
+            10 -> slug = "Warlock"
+            11 -> slug = "Warrior"
+        }
+        return slug
     }
 }

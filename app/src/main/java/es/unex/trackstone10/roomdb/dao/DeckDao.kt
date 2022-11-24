@@ -36,4 +36,7 @@ interface DeckDao {
     @Query("UPDATE deck_table SET count = count-1 WHERE id = :deckID")
     fun decCount(deckID: Int)
 
+    @Query("SELECT classid FROM deck_table WHERE id = :deckID AND user_id = :userID")
+    fun getSlug(deckID: Int, userID:Int): Int?
+
 }
