@@ -58,19 +58,8 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getCardsRecycler() {
         CoroutineScope(Dispatchers.IO).launch {
             delay(2000)
-            //Se crea cliente http
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
+            val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
 
-            //Se crea retrofit usando el cliente creado encima
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-
-            //Se lleva a cabo la llamada GET a la API
             val call = retrofit.create(APIService::class.java)
                 .getCards("standard", "groupByClass:asc,manaCost:asc", 1300, "en_US")
 
@@ -93,19 +82,9 @@ class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            //Se crea cliente http
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
 
-            //Se crea retrofit usando el cliente creado encima
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+            val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
 
-            //Se lleva a cabo la llamada GET a la API
             val call =
                 retrofit.create(APIService::class.java)
                     .getCardsByName(query, "standard", "groupByClass:asc,manaCost:asc",1300, "en_US")

@@ -64,15 +64,8 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getCardBacks(){
         CoroutineScope(Dispatchers.IO).launch {
             delay(2000)
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
 
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cardbacks/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+            val retrofit = APIToken.getRetrofit("/hearthstone/cardbacks/")
 
             val call = retrofit.create(APIService::class.java).getCardBacksByName("en_US")
 
@@ -96,15 +89,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchByName(query: String){
         CoroutineScope(Dispatchers.IO).launch {
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cardbacks/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
+            val retrofit = APIToken.getRetrofit("/hearthstone/cardbacks/")
 
             val call = retrofit.create(APIService::class.java).getCardBacksByName("en_US", query)
 

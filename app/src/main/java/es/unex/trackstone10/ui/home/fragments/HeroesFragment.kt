@@ -61,16 +61,7 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun getHeroes() {
         CoroutineScope(Dispatchers.IO).launch {
             delay(2000)
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
-
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-
+            val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
 
             val call = retrofit.create(APIService::class.java).getHeroes(
                 "17", "groupByClass:asc", "en_US"
@@ -95,16 +86,8 @@ class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchByName(query: String) {
         CoroutineScope(Dispatchers.IO).launch {
-            val client = OkHttpClient.Builder()
-                .addInterceptor(TokenInterceptor())
-                .build()
 
-            val retrofit = Retrofit.Builder()
-                .baseUrl("https://us.api.blizzard.com/hearthstone/cards/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build()
-
+            val retrofit = APIToken.getRetrofit("/hearthstone/cards/")
 
             val call = retrofit.create(APIService::class.java)
                 .getHeroByName(query, "17", "groupByClass:asc", "en_US")
