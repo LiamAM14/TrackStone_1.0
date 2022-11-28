@@ -14,13 +14,10 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.*
-import es.unex.trackstone10.CardInfoActivity
+import es.unex.trackstone10.CU03.CardInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentCardsBinding
 import kotlinx.coroutines.*
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class CardsFragment : Fragment(), SearchView.OnQueryTextListener {
 

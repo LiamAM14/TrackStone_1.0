@@ -14,16 +14,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.*
-import es.unex.trackstone10.HeroInfoActivity
+import es.unex.trackstone10.CU13.HeroInfoActivity
 import es.unex.trackstone10.adapter.cardAdapter
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class HeroesFragment : Fragment(), SearchView.OnQueryTextListener {
 

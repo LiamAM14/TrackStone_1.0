@@ -1,9 +1,11 @@
-package es.unex.trackstone10
+package es.unex.trackstone10.CU01
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.ButtonNavigationMenuActivity
 import es.unex.trackstone10.databinding.ActivityRegisterBinding
 import es.unex.trackstone10.roomdb.Entity.UserEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase

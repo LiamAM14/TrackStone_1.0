@@ -1,4 +1,4 @@
-package es.unex.trackstone10.ui.profile
+package es.unex.trackstone10.CU05
 
 import android.content.Context
 import android.content.Intent
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import es.unex.trackstone10.*
+import es.unex.trackstone10.CU08.LoginActivity
 import es.unex.trackstone10.databinding.FragmentProfileBinding
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 

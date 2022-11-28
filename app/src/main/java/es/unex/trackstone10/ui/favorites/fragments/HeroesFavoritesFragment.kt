@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.HeroFavInfoActivity
+import es.unex.trackstone10.CU14.HeroFavInfoActivity
 import es.unex.trackstone10.adapter.HeroFavAdapter
 import es.unex.trackstone10.databinding.FragmentHeroesBinding
 import es.unex.trackstone10.roomdb.Entity.ClassEntity

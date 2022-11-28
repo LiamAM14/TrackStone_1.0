@@ -1,10 +1,13 @@
-package es.unex.trackstone10
+package es.unex.trackstone10.CU08
 
 import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.ButtonNavigationMenuActivity
+import es.unex.trackstone10.CU01.RegisterActivity
 import es.unex.trackstone10.databinding.ActivityLoginBinding
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 

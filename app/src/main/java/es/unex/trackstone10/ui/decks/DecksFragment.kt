@@ -10,9 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.*
+import es.unex.trackstone10.CU02.CreateDeckActivity
 import es.unex.trackstone10.adapter.deckAdapter
 import es.unex.trackstone10.databinding.FragmentDecksBinding
-import es.unex.trackstone10.databinding.ItemDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase
 import kotlinx.coroutines.CoroutineScope

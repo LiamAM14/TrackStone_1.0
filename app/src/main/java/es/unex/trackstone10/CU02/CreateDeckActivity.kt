@@ -1,4 +1,4 @@
-package es.unex.trackstone10
+package es.unex.trackstone10.CU02
 
 import android.content.Context
 import android.content.Intent
@@ -8,6 +8,8 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.R
 import es.unex.trackstone10.databinding.ActivityCreateDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase

@@ -16,14 +16,14 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:targetApi="33">
         <activity
-            android:name=".EditDeckActivity"
+            android:name=".CU12.EditDeckActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".HeroFavInfoActivity"
+            android:name=".CU14.HeroFavInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -37,21 +37,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".CardFavInfoActivity"
+            android:name=".CU15.CardFavInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".SelectCardDeckActivity"
+            android:name=".CU02.SelectCardDeckActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CreateDeckActivity"
+            android:name=".CU02.CreateDeckActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -79,7 +79,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".LoginActivity"
+            android:name=".CU08.LoginActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -92,7 +92,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".RegisterActivity"
+            android:name=".CU01.RegisterActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -106,21 +106,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".HeroInfoActivity"
+            android:name=".CU13.HeroInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CardInfoActivity"
+            android:name=".CU03.CardInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CardBackInfoActivity"
+            android:name=".CU04.CardBackInfoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

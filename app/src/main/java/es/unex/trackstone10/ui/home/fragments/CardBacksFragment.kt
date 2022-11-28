@@ -16,17 +16,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import es.unex.trackstone10.API.APIService
 import es.unex.trackstone10.API.APIToken
 import es.unex.trackstone10.API.CardBackResponse
-import es.unex.trackstone10.API.TokenInterceptor
-import es.unex.trackstone10.CardBackInfoActivity
+import es.unex.trackstone10.CU04.CardBackInfoActivity
 import es.unex.trackstone10.adapter.cardbackAdapter
 import es.unex.trackstone10.databinding.FragmentCardBacksBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import okhttp3.OkHttpClient
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
 class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -55,7 +51,7 @@ class CardBacksFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun onItemSelected(cardbacks: CardBackResponse){
-        val intent: Intent = Intent(activity,CardBackInfoActivity::class.java)
+        val intent: Intent = Intent(activity, CardBackInfoActivity::class.java)
         intent.putExtra("CARD_BACK_OBJ",cardbacks)
         startActivity(intent)
 

@@ -1,4 +1,4 @@
-package es.unex.trackstone10
+package es.unex.trackstone10.CU04
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
 import es.unex.trackstone10.API.CardBackResponse
+import es.unex.trackstone10.AppExecutors
+import es.unex.trackstone10.ButtonNavigationMenuActivity
 import es.unex.trackstone10.databinding.ActivityCardBackInfoBinding
 import es.unex.trackstone10.roomdb.Entity.CardBackEntity
 import es.unex.trackstone10.roomdb.TrackstoneDatabase

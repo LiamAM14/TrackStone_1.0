@@ -4,12 +4,10 @@ import android.content.Intent
 import android.view.View
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import es.unex.trackstone10.AppExecutors
-import es.unex.trackstone10.EditDeckActivity
+import es.unex.trackstone10.CU12.EditDeckActivity
 import es.unex.trackstone10.R
 import es.unex.trackstone10.databinding.ItemDeckBinding
 import es.unex.trackstone10.roomdb.Entity.DeckEntity
-import es.unex.trackstone10.roomdb.TrackstoneDatabase
 
 
 class deckHolder(view: View): RecyclerView.ViewHolder(view) {

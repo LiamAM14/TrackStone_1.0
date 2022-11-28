@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import es.unex.trackstone10.CardFavInfoActivity
+import es.unex.trackstone10.CU15.CardFavInfoActivity
 import es.unex.trackstone10.adapter.cardAdapterFav
 import es.unex.trackstone10.databinding.FragmentCardsBinding
 import es.unex.trackstone10.roomdb.Entity.CardEntity
