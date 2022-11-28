@@ -96,4 +96,9 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         return true
     }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 }

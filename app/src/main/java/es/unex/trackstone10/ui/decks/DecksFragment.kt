@@ -75,5 +75,9 @@ class DecksFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 
 }

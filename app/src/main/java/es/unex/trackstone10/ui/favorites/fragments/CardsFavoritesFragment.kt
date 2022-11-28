@@ -97,4 +97,9 @@ class CardsFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
         }
         return true
     }
+
+    override fun onResume() {
+        super.onResume()
+        adapter.notifyDataSetChanged()
+    }
 }
