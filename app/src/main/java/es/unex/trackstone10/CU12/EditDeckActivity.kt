@@ -157,4 +157,9 @@ class EditDeckActivity : AppCompatActivity(), SearchView.OnQueryTextListener {
         return slug
     }
 
+    override fun onRestart() {
+        super.onRestart()
+        getDeckCardRecycler(deckId)
+    }
+
 }
