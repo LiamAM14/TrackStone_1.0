@@ -99,6 +99,6 @@ class HeroesFavoritesFragment : Fragment(), SearchView.OnQueryTextListener {
 
     override fun onResume() {
         super.onResume()
-        adapter.notifyDataSetChanged()
+        getHeroReclycer()
     }
 }
