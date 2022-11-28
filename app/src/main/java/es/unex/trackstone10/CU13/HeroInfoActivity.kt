@@ -40,8 +40,7 @@ class HeroInfoActivity : AppCompatActivity() {
                     )
                 )
             }
-            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-            startActivity(intent)
+            this.finish()
         }
     }
 }

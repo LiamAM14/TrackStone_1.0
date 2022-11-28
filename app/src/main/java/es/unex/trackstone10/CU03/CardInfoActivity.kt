@@ -98,9 +98,7 @@ class CardInfoActivity() : AppCompatActivity() {
                         userId
                     )
                 )
-                val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-                startActivity(intent)
-
+                this.finish()
             }
 
         }

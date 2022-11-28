@@ -29,8 +29,7 @@ class HeroFavInfoActivity : AppCompatActivity()  {
                 val db = TrackstoneDatabase.getInstance(this)
                 db?.classDao?.deleteFromId(heroes.id)
             }
-            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-            startActivity(intent)
+            this.finish()
         }
     }
 

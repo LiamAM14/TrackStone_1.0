@@ -40,8 +40,7 @@ class CardBackInfoActivity : AppCompatActivity() {
                 )
 
             }
-            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-            startActivity(intent)
+            this.finish()
         }
 
     }

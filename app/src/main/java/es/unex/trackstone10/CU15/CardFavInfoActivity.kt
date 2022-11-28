@@ -51,8 +51,7 @@ class CardFavInfoActivity : AppCompatActivity()  {
                 val db = TrackstoneDatabase.getInstance(this)
                 db?.carddao?.deleteByName(cards.name)
             }
-            val intent = Intent(this, ButtonNavigationMenuActivity::class.java)
-            startActivity(intent)
+            this.finish()
         }
 
     }
